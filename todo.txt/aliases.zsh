@@ -1,10 +1,4 @@
 # todo.sh: https://github.com/ginatrapani/todo.txt-cli
-function t() { 
-  if [ $# -eq 0 ]; then
-    todo.sh ls
-  else
-    todo.sh $*
-  fi
-}
 
-alias n="t ls +next"
+alias t='todo.sh -d ~/Dropbox/Documents/todo/.todo.personal.cfg'
+alias td='todo.sh -d ~/Dropbox/Documents/todo/.todo.work.cfg'
