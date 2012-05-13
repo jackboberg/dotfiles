@@ -1,0 +1,38 @@
+# Sample gitconfig
+#
+# This is a sample gitconfig. Usually we keep a lot of sensitive information
+# here (things like authentication tokens, email addresses, and so on), so this
+# file is ignored in this project's .gitignore.
+#
+# To set this up, rename this file to `gitconfig.symlink` and you'll be able to
+# install this to the correct location by running the project's main `rake`
+# task.
+
+[user]
+  name = Jack Boberg
+  email = jack.boberg@gmail.com
+
+[github]
+  user = jackboberg
+
+[core]
+  excludesfile = ~/.gitignore
+  quotepath = false
+
+[color]
+  ui = true
+  pager = true
+  interactive = auto
+  diff = auto
+  status = auto
+  branch = auto
+
+[mergetool]
+  keepBackup = false
+
+[alias]
+  co = checkout
+  promote = !$ZSH/bin/git-promote
+  wtf     = !$ZSH/bin/git-wtf
+  rank-contributers = !$ZSH/bin/git-rank-contributers
+  count   = !git shortlog -sn
