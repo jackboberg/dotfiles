@@ -23,13 +23,12 @@
   set scrolloff=4 sidescrolloff=10
 
 " set preferences for spaces vs. tabs
-  set expandtab tabstop=2 softtabstop=2 shiftwidth=2
+  set expandtab tabstop=4 softtabstop=4 shiftwidth=4
   " these languages are fussy about tabs Vs spaces
   au FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
   au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-  " these languages look better with more space
-  au FileType php setlocal ts=4 sts=4 sw=4 expandtab
-  au FileType python setlocal ts=4 sts=4 sw=4 expandtab
+  " these languages look better with less space
+  au FileType html setlocal ts=2 sts=2 sw=2 expandtab
   set smarttab
 
 " highlight PHP in HTML
@@ -50,8 +49,9 @@
 " assume the /g flag on substitutions to replace all matches in a line
   set gdefault
 
-" set temporary directory (don't litter local dir with swp/tmp files)
-  set directory=/tmp/
+" Store temporary files in a central spot
+  set backupdir=~/.vim_tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+  set directory=~/.vim_tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " pick up external file modifications
   set autoread
@@ -61,9 +61,6 @@
 
 " match indentation of previous line
   set autoindent
-
-" perform autoindenting based on filetype plugin
-  filetype plugin indent on
 
 " don't blink the cursor
   set guicursor=a:blinkon0
@@ -116,11 +113,8 @@
 " Thorfile, Rakefile, Vagrantfile, and Gemfile are Ruby
   au BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 
-" JSON is JS
-  au BufNewFile,BufRead *.json set ai filetype=javascript
-
-" MASS is JS
-  au BufNewFile,BufRead *.xjs set ai filetype=javascript
+" JSON, MASS is JS
+  au BufNewFile,BufRead {*.json,*.xjs} set ai filetype=javascript
 
 " RSS isXML
   au BufNewFile,BufRead *.rss set ai filetype=xml
