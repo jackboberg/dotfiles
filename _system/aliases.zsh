@@ -6,6 +6,11 @@ alias ll='ls -lAFGh'
 alias ..='cd ..'
 alias ...='cd ../..'
 
+# create directory and change to it
+mkd () {
+    mkdir -pv "${1}" && cd "${1}"
+}
+
 # Super user
 alias _='sudo'
 
