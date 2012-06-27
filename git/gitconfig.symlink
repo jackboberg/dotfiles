@@ -18,8 +18,6 @@
 [core]
     excludesfile = ~/.gitignore
     quotepath = false
-    autocrlf = input
-    safecrlf = true
 
 [color]
     ui = true
