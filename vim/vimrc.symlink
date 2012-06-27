@@ -1,3 +1,6 @@
+" use zsh
+  set shell=/bin/zsh
+
 " be iMproved
   set nocompatible
 
