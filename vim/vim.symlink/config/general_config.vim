@@ -23,12 +23,13 @@
   set scrolloff=4 sidescrolloff=10
 
 " set preferences for spaces vs. tabs
-  set expandtab tabstop=4 softtabstop=4 shiftwidth=4
+  set expandtab tabstop=2 softtabstop=2 shiftwidth=2
   " these languages are fussy about tabs Vs spaces
   au FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
   au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-  " these languages look better with less space
-  au FileType html setlocal ts=2 sts=2 sw=2 expandtab
+  " pep8 and php like 4 space tabs
+  au FileType python setlocal ts=4 sts=4 sw=4 expandtab
+  au FileType php setlocal ts=4 sts=4 sw=4 expandtab
   set smarttab
 
 " highlight PHP in HTML

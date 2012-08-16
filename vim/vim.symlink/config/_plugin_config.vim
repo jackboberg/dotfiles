@@ -13,10 +13,11 @@
   Bundle "tpope/vim-repeat"
   Bundle "bingaman/vim-sparkup"
   Bundle "michaeljsmith/vim-indent-object"
-"  Bundle "tpope/vim-haml"
-"  Bundle "pangloss/vim-javascript"
+  Bundle "kchmck/vim-coffee-script"
+  Bundle "tpope/vim-haml"
+  Bundle "vim-ruby/vim-ruby"
+  Bundle "pangloss/vim-javascript"
 "  Bundle "harleypig/vcscommand.vim"
-"  Bundle "vim-ruby/vim-ruby"
 
 
 " NERDTree for project drawer

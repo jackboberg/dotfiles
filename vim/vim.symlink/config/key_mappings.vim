@@ -1,5 +1,5 @@
 " get out of insert mode with cmd-i
-  imap <D-i> <Esc>
+  imap jj <Esc>
 
 " easy wrap toggling
   nmap <Leader>w :set wrap!<cr>
@@ -89,3 +89,6 @@
   au BufEnter * setlocal colorcolumn=81
   au BufLeave * setlocal nocursorline
   au BufLeave * setlocal colorcolumn=0
+
+" force save read-only files
+  cmap w!! %!sudo tee > /dev/null %
