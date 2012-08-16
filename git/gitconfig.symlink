@@ -9,30 +9,33 @@
 # task.
 
 [user]
-    name = Jack Boberg
-    email = jack.boberg@gmail.com
+  name = Jack Boberg
+  email = jack.boberg@gmail.com
 
 [github]
-    user = jackboberg
+  user = jackboberg
 
 [core]
-    excludesfile = ~/.gitignore
-    quotepath = false
+  excludesfile = ~/.gitignore
+  quotepath = false
 
 [color]
-    ui = true
-    pager = true
-    interactive = auto
-    diff = auto
-    status = auto
-    branch = auto
+  ui = true
+  pager = true
+  interactive = auto
+  diff = auto
+  status = auto
+  branch = auto
 
 [mergetool]
-    keepBackup = false
+  keepBackup = false
 
 [alias]
-    co = checkout
-    promote = !$ZSH/bin/git-promote
-    wtf     = !$ZSH/bin/git-wtf
-    rank-contributers = !$ZSH/bin/git-rank-contributers
-    count   = !git shortlog -sn
+  co = checkout
+  promote = !$ZSH/bin/git-promote
+  wtf     = !$ZSH/bin/git-wtf
+  rank-contributers = !$ZSH/bin/git-rank-contributers
+  count   = !git shortlog -sn
+
+[heroku]
+  account = personal
