@@ -2,7 +2,10 @@
 export ZSH=$HOME/.dotfiles
 
 # your project folder that we can `c [tab]` to
-export PROJECTS=~/Development
+export PROJECTS=~/Projects
+
+# your sites folder that we can `s [tab]` to
+export SITES=~/Sites
 
 # source every .zsh file in this rep
 for config_file ($ZSH/**/*.zsh) source $config_file
@@ -20,3 +23,5 @@ compinit
 
 # load every completion after autocomplete loads
 for config_file ($ZSH/**/completion.sh) source $config_file
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
