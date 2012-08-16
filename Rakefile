@@ -4,6 +4,12 @@ desc "Hook our dotfiles into system-standard positions."
 task :install do
   linkables = Dir.glob('*/**{.symlink}')
 
+  # Add dropbox configuration if present
+  private_dir = File.join(ENV["HOME"], "Dropbox/.dotfiles")
+  if File.directory?(private_dir)
+    linkables |= Dir.glob(private_dir+'/**/*{.symlink}')
+  end
+
   skip_all = false
   overwrite_all = false
   backup_all = false
@@ -30,7 +36,7 @@ task :install do
       FileUtils.rm_rf(target) if overwrite || overwrite_all
       `mv "$HOME/.#{file}" "$HOME/.#{file}.backup"` if backup || backup_all
     end
-    `ln -s "$PWD/#{linkable}" "#{target}"`
+    `ln -s "#{linkable}" "#{target}"`
   end
 end
 
@@ -45,10 +51,10 @@ task :uninstall do
     if File.symlink?(target)
       FileUtils.rm(target)
     end
-    
+
     # Replace any backups made during installation
     if File.exists?("#{ENV["HOME"]}/.#{file}.backup")
-      `mv "$HOME/.#{file}.backup" "$HOME/.#{file}"` 
+      `mv "$HOME/.#{file}.backup" "$HOME/.#{file}"`
     end
 
   end
