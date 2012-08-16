@@ -23,3 +23,6 @@ alias shlvl="echo $SHLVL"
 
 # Clear the DNS
 alias flush_dns="dscacheutil -flushcache"
+
+# print current IP
+alias myip='curl -s http://checkrealip.com/ | grep "Current IP Address"'
