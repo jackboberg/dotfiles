@@ -27,6 +27,9 @@
   status = auto
   branch = auto
 
+[merge]
+  tool = opendiff
+
 [mergetool]
   keepBackup = false
 
