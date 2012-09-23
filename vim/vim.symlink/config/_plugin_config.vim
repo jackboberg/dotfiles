@@ -16,6 +16,7 @@
   Bundle "kchmck/vim-coffee-script"
   Bundle "tpope/vim-haml"
   Bundle "vim-ruby/vim-ruby"
+  Bundle "tpope/vim-endwise"
   Bundle "pangloss/vim-javascript"
 "  Bundle "harleypig/vcscommand.vim"
 
