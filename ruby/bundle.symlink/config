@@ -1,3 +1,2 @@
----
 BUNDLE_WITHOUT: production
-BUNDLE_BIN: ./bundler_stubs
+BUNDLE_BIN: .bin

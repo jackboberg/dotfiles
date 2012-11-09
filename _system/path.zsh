@@ -11,11 +11,10 @@ PHP_PATH=/Applications/MAMP/bin/php/php5.3.6/bin
 PYTHON_PATH=/usr/local/share/python
 
 # Ruby
-RUBY_PATH=/usr/local/Cellar/ruby/1.9.3-p194/bin
-export GEM_HOME='/usr/local'
+RUBY_PATH=$HOME/.rbenv/shims:$HOME/.rbenv/bin
 
 # Node/NPM
 NPM_PATH=/usr/local/share/npm/bin
 export NODE_PATH=/usr/local/lib/node_modules
 
-export PATH=$LOCAL_PATH:$ZSH/bin:$PHP_PATH:$PYTHON_PATH:$RUBY_PATH:$NPM_PATH:$PATH
+export PATH=.bin:$RUBY_PATH:$LOCAL_PATH:$ZSH/bin:$PHP_PATH:$PYTHON_PATH:$NPM_PATH:$PATH

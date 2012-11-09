@@ -44,4 +44,6 @@ Thumbs.db
 
 # bin #
 ######################
-bundler_stubs/
+.bin
+.bundle
+bundler_stubs
