@@ -51,6 +51,9 @@ if defined? Rails
   begin
     require 'hirb'
     Hirb.enable
+
+    require "awesome_print"
+    AwesomePrint.irb!
   rescue LoadError
   end
 end
