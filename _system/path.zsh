@@ -5,7 +5,7 @@ LOCAL_PATH=/usr/local/bin:/usr/local/sbin
 PYTHON_PATH=/usr/local/share/python
 
 # Ruby
-RUBY_PATH=$HOME/.rbenv/shims:$HOME/.rbenv/bin
+RUBY_PATH=./vendor/bin:$HOME/.rbenv/shims:$HOME/.rbenv/bin
 
 # Node/NPM
 NPM_PATH=/usr/local/share/npm/bin
