@@ -45,3 +45,6 @@
 
 [heroku]
   account = personal
+
+[branch]
+  autosetuprebase = always
