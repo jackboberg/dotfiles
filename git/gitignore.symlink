@@ -42,8 +42,11 @@ Thumbs.db
 *.esproj
 *.espressostorage
 
-# bin #
+# binaries #
 ######################
 .bin
+bin
+
+# bundler #
+######################
 .bundle
-bundler_stubs

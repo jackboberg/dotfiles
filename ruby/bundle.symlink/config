@@ -1,3 +1,3 @@
-BUNDLE_WITHOUT: production
-BUNDLE_PATH: vendor
-BUNDLE_DISABLE_SHARED_GEMS: true
+BUNDLE_WITHOUT: production:staging
+BUNDLE_PATH: .bundle
+BUNDLE_BIN: bin
