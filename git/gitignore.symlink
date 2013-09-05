@@ -32,7 +32,7 @@
 .DS_Store
 .DS_Store?
 ehthumbs.db
-Icon?
+Icon
 Thumbs.db
 
 # Editor Files #
@@ -47,6 +47,7 @@ Thumbs.db
 .bin
 bin
 
-# bundler #
+# package bundles #
 ######################
 .bundle
+node_modules
