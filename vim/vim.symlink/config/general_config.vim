@@ -114,10 +114,12 @@
 " Thorfile, Rakefile, Vagrantfile, and Gemfile are Ruby
   au BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 
-" JSON, MASS is JS
-  au BufNewFile,BufRead {*.json,*.xjs} set ai filetype=javascript
+" JSON is JSON
+  au BufNewFile,BufRead {*.json} set ai filetype=json
 
-" RSS isXML
+  au BufNewFile,BufRead {*.handlebars} set ai filetype=js.html
+
+" RSS is XML
   au BufNewFile,BufRead *.rss set ai filetype=xml
 
 " different color for each paren pairs
