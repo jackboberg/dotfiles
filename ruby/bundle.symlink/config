@@ -1,3 +1,4 @@
 ---
 BUNDLE_WITHOUT: production:staging
-BUNDLE_PATH: .bundle
+BUNDLE_PATH: vendor/ruby
+BUNDLE_BIN: vendor/ruby/bin

@@ -42,6 +42,8 @@
   assume   = update-index --assume-unchanged
   unassume = update-index --no-assume-unchanged
   assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
+  fetch-pr = "!f() { git fetch $1 refs/pull/$2/head:refs/remotes/pr/$2; }; f"
+  rebase-pr = "!f() { git checkout -b pr_$1 pr/$1; git rebase @{-1}; git checkout @{-2}; git rebase @{-1}; }; f"
 
 [heroku]
   account = personal
@@ -51,3 +53,9 @@
 
 [push]
   default = simple
+
+[hub]
+  protocol = https
+
+[credential]
+  helper = osxkeychain

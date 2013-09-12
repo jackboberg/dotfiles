@@ -41,13 +41,9 @@ Thumbs.db
 *~
 *.esproj
 *.espressostorage
-
-# binaries #
-######################
-.bin
-bin
+.rspec
 
 # package bundles #
 ######################
-.bundle
+vendor/ruby
 node_modules
