@@ -10,4 +10,7 @@ RUBY_PATH=$HOME/.rbenv/shims:$HOME/.rbenv/bin
 # Node/npm
 NPM_PATH=/usr/local/share/npm/bin
 
-export PATH=./.bin:./bin:$RUBY_PATH:$LOCAL_PATH:$ZSH/bin:$PYTHON_PATH:$NPM_PATH:$PATH
+# add regular bin paths
+BIN_PATH=./vendor/ruby/bin:./.bin:./bin
+
+export PATH=$BIN_PATH:$RUBY_PATH:$LOCAL_PATH:$ZSH/bin:$PYTHON_PATH:$NPM_PATH:$PATH
