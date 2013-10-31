@@ -78,13 +78,13 @@
 "     map <Leader>. :TagbarToggle<CR>
 
 
-" " Markdown syntax highlighting
-"   Bundle "tpope/vim-markdown"
-"     augroup mkd
-"       autocmd BufNewFile,BufRead *.mkd      set ai formatoptions=tcroqn2 comments=n:> filetype=markdown
-"       autocmd BufNewFile,BufRead *.md       set ai formatoptions=tcroqn2 comments=n:> filetype=markdown
-"       autocmd BufNewFile,BufRead *.markdown set ai formatoptions=tcroqn2 comments=n:> filetype=markdown
-"     augroup END
+" Markdown syntax highlighting
+  Bundle "tpope/vim-markdown"
+    augroup mkd
+      autocmd BufNewFile,BufRead *.mkd      set ai formatoptions=tcroqn2 comments=n:> filetype=markdown
+      autocmd BufNewFile,BufRead *.md       set ai formatoptions=tcroqn2 comments=n:> filetype=markdown
+      autocmd BufNewFile,BufRead *.markdown set ai formatoptions=tcroqn2 comments=n:> filetype=markdown
+    augroup END
 
 
 " Tabular for aligning text
