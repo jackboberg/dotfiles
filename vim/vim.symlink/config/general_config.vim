@@ -113,6 +113,7 @@
 
 " Thorfile, Rakefile, Vagrantfile, and Gemfile are Ruby
   au BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
+  au BufNewFile,BufRead {*.cap} set ft=ruby
 
 " JSON is JSON
   au BufNewFile,BufRead {*.json} set ai filetype=json
