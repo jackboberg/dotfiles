@@ -119,6 +119,7 @@
   au BufNewFile,BufRead {*.json} set ai filetype=json
 
   au BufNewFile,BufRead {*.handlebars} set ai filetype=js.html
+  au BufNewFile,BufRead {*.ejs} set ai filetype=js.html
 
 " RSS is XML
   au BufNewFile,BufRead *.rss set ai filetype=xml
