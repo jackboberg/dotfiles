@@ -19,6 +19,7 @@
   Bundle "tpope/vim-endwise"
   Bundle "pangloss/vim-javascript"
 "  Bundle "harleypig/vcscommand.vim"
+  Bundle "apcomplete/html_entities_helper.vim"
 
 
 " NERDTree for project drawer
