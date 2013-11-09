@@ -15,7 +15,6 @@ mkd () {
 alias _='sudo'
 
 # History
-alias h='history'
 alias fh='history | grep $1' #Requires one input
 
 # How deep into vim have I gotten
