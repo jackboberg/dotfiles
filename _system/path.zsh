@@ -1,9 +1,6 @@
 # use local FIRST
 LOCAL_PATH=/usr/local/bin:/usr/local/sbin
 
-# Python
-PYTHON_PATH=/usr/local/share/python
-
 # Ruby
 RUBY_PATH=$HOME/.rbenv/shims:$HOME/.rbenv/bin
 
@@ -13,4 +10,4 @@ NPM_PATH=/usr/local/share/npm/bin
 # add regular bin paths
 BIN_PATH=./vendor/ruby/bin:./.bin:./bin
 
-export PATH=$BIN_PATH:$RUBY_PATH:$LOCAL_PATH:$ZSH/bin:$PYTHON_PATH:$NPM_PATH:$PATH
+export PATH=$BIN_PATH:$RUBY_PATH:$LOCAL_PATH:$ZSH/bin:$NPM_PATH:$PATH
