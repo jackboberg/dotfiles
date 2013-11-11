@@ -1,5 +1,6 @@
-alias r='rbenv local 1.9.3-p385'
 alias rake="noglob rake"
+alias rspec='nocorrect rspec'
+alias cap='nocorrect cap'
 
 alias sc='script/console'
 alias sg='script/generate'
