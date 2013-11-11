@@ -1,2 +1,2 @@
-alias redis-up='redis-server /usr/local/etc/redis.conf > /dev/null &'
-alias redis-down='killall redis-server'
+alias redis-up='redis-server ~/.dotfiles/redis/redis.conf'
+alias redis-down='cat /usr/local/var/run/redis.pid | xargs kill -15'
