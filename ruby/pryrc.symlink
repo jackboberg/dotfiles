@@ -5,18 +5,11 @@
 # vim FTW
 Pry.config.editor = 'vim'
 
-# hirb
-begin
-  require 'hirb'
-  Hirb.enable
-rescue LoadError => err
-  warn "Couldn't load hirb: #{err}"
-end
-
 # awesome print
 begin
   require 'awesome_print'
-  # AwesomePrint.pry!
+  AwesomePrint.pry!
+  Pry.config.print = proc { |output, value| Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output) }
 rescue LoadError => err
   warn "Couldn't load awesome_print: #{err}"
 end
