@@ -2,7 +2,7 @@
 export ZSH=$HOME/.dotfiles
 
 # your project folder that we can `c [tab]` to
-export PROJECTS=~/Projects
+export PROJECTS=~/Documents/Projects
 
 # your sites folder that we can `s [tab]` to
 export SITES=~/Sites
