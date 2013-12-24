@@ -47,3 +47,8 @@ Thumbs.db
 ######################
 vendor/ruby
 node_modules
+
+# sensitive data #
+#####################
+config/database.yml
+config/sensitive.yml
