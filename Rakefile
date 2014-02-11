@@ -1,16 +1,17 @@
 require 'rake'
 
-desc "Hook our dotfiles into system-standard positions."
-task :install do
-  # linkables = Dir.glob('*/**{.symlink}')
+def linkables
   linkables = Dir.glob(File.join(ENV["HOME"], '.dotfiles', '*/**{.symlink}'))
-
   # Add dropbox configuration if present
   private_dir = File.join(ENV["HOME"], "Dropbox/.dotfiles")
   if File.directory?(private_dir)
     linkables |= Dir.glob(private_dir+'/**/*{.symlink}')
   end
+  linkables
+end
 
+desc "Symlink our dotfiles into system-standard positions."
+task :install do
   skip_all = false
   overwrite_all = false
   backup_all = false
@@ -45,10 +46,9 @@ task :install do
   end
 end
 
+desc "Remove dotfile symlinks"
 task :uninstall do
-
-  Dir.glob('**/*.symlink').each do |linkable|
-
+  linkables.each do |linkable|
     file = linkable.split('/').last.split('.symlink').last
     target = "#{ENV["HOME"]}/.#{file}"
 
