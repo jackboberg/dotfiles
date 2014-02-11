@@ -8,12 +8,8 @@
 # install this to the correct location by running the project's main `rake`
 # task.
 
-[user]
-  name = Jack Boberg
-  email = jack.boberg@gmail.com
-
-[github]
-  user = jackboberg
+[include]
+  path = ~/.gitconfig.private
 
 [core]
   excludesfile = ~/.gitignore
