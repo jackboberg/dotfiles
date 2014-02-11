@@ -7,9 +7,6 @@
 " turn on filetype while setting up (required!)
   filetype off
 
-" follow the leader
-  let mapleader=","
-
 " make vundle go
   set rtp+=~/.vim/bundle/vundle/
   call vundle#rc()
@@ -17,8 +14,9 @@
 " let Vundle manage Vundle (required!)
   Bundle 'gmarik/vundle'
 
+" turn filetype back on
+  filetype plugin indent on
+
 " include organized config
   runtime! config/*.vim
 
-" turn filetype back on
-  filetype plugin indent on

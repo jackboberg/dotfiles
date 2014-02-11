@@ -1,3 +1,6 @@
+" follow the leader
+  let mapleader=","
+
 " get out of insert mode with cmd-i
   imap jj <Esc>
 
