@@ -191,6 +191,11 @@
 " have the mouse enabled all the time
   set mouse=a
 
+" enable mouse support wide monitors
+  if has('mouse_sgr')
+    set ttymouse=sgr
+  endif
+
 " use tab-complete to see a list of possiblities when entering commands
   set wildmode=list:longest,full
 
