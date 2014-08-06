@@ -70,7 +70,7 @@
 
 " Toggle spell checking on and off
   nmap <silent> <leader>s :set spell!<CR>
-  set spelllang=en_us
+  set spell spelllang=en_us
 
 " Toggle invisibles
   nmap <silent> <leader>i :set list!<CR>
