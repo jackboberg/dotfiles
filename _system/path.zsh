@@ -1,5 +1,5 @@
 # Ruby
-export RBENV_ROOT=/usr/local/var/rbenv
+export RBENV_ROOT=$(brew --prefix)/var/rbenv
 RUBY_PATH=$RBENV_ROOT/shims
 
 # even more local bin directories
