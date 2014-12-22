@@ -34,6 +34,7 @@
   Plugin 'tpope/vim-unimpaired'
   Plugin 'vim-ruby/vim-ruby'
   Plugin 'ZoomWin'
+  Plugin 'nathanaelkane/vim-indent-guides'
 
 " all the plugins have been added (required!)
   call vundle#end()
