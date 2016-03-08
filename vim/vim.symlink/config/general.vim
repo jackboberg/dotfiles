@@ -236,3 +236,6 @@
 
 " wrap markdown files at 80 characters
   au BufRead,BufNewFile *.md setlocal textwidth=80
+
+" format json documents
+  nmap =j :%!python -m json.tool<CR>
