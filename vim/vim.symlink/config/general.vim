@@ -233,3 +233,6 @@
 
 " return to the last position in file
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" wrap markdown files at 80 characters
+  au BufRead,BufNewFile *.md setlocal textwidth=80
