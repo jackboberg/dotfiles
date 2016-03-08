@@ -23,6 +23,7 @@
   Plugin 'kchmck/vim-coffee-script'
   Plugin 'michaeljsmith/vim-indent-object'
   Plugin 'pangloss/vim-javascript'
+  Plugin 'rking/ag.vim'
   Plugin 'scrooloose/nerdtree'
   Plugin 'scrooloose/syntastic'
   Plugin 'SirVer/ultisnips'
