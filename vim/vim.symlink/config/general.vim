@@ -211,6 +211,7 @@
 
 " javascript templating languages are also HTML
   au BufNewFile,BufRead {*.handlebars} set ai filetype=js.html
+  au BufNewFile,BufRead {*.hbs} set ai filetype=js.html
   au BufNewFile,BufRead {*.ejs} set ai filetype=js.html
 
 " RSS is XML
