@@ -33,6 +33,7 @@
   wtf               = !$DOT/bin/git-wtf
   rank-contributers = !$DOT/bin/git-rank-contributers
   undo              = !$DOT/bin/git-undo
+  ec                = config --global -e
 
 [branch]
   autosetuprebase = always
