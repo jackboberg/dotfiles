@@ -1,4 +1,0 @@
-# Deletes orphaned docker images
-# https://twitter.com/climagic/status/718524289201356800
-
-for x in $(docker images | awk '$1 ~ "<none>" {print $3}'); do docker rmi $x; done

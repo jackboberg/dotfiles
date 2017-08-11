@@ -1,6 +1,4 @@
-export NVM_DIR=$(brew --prefix)/var/nvm
-source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR="$HOME/.nvm"
 
-npm-defaults () {
-  cat $DOT/node/npm-defaults | xargs npm i -g
-}
+# lukechilds/zsh-nvm
+# export NVM_LAZY_LOAD=true
