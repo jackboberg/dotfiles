@@ -1,0 +1,49 @@
+antigen use oh-my-zsh
+
+antigen bundles <<EOBUNDLES
+
+  # load local plugins first to set env vars and config
+  $DOT/system
+
+  --loc=lib/directories.zsh
+
+  $DOT/vim
+
+  git
+  $DOT/git
+
+  # A next-generation cd command with an interactive filter
+  b4b4r07/enhancd --loc=init.sh
+
+  # Fish shell's history search feature
+  zsh-users/zsh-syntax-highlighting
+  zsh-users/zsh-history-substring-search
+
+  $DOT/node
+  # Zsh plugin for installing, updating and loading nvm
+  lukechilds/zsh-nvm
+  npm
+  # Better completion for npm
+  lukechilds/zsh-better-npm-completion
+
+  # completion and aliases for docker
+  docker
+  docker-compose
+  $DOT/docker
+
+  vundle
+
+  rbenv
+  $DOT/ruby
+
+  # pretty, minimal and fast ZSH prompt
+  mafredri/zsh-async
+  sindresorhus/pure
+
+  # $HOME/.zsh/history.zsh
+
+  $DOT/zsh/config
+EOBUNDLES
+
+# Then, source plugins and add commands to $PATH
+antigen apply
