@@ -1,5 +1,5 @@
 " ------------------------------------------------------------------------------
-" Plugin 'scrooloose/nerdtree'
+" Plugin 'vim-airline/vim-airline'
 " ------------------------------------------------------------------------------
 
-nmap gt :NERDTreeToggle<CR>
+let g:airline_theme='base16'

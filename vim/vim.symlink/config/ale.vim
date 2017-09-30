@@ -1,5 +1,7 @@
 " ------------------------------------------------------------------------------
-" Plugin 'scrooloose/nerdtree'
+" Plugin 'w0rp/ale'
 " ------------------------------------------------------------------------------
 
-nmap gt :NERDTreeToggle<CR>
+let g:ale_linters = {
+\  'javascript': ['standard']
+\}

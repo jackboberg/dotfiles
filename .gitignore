@@ -1,5 +1,5 @@
 # vundle #
 ##########
 vim/vim.symlink/vundle/
-vim/vim.symlink/plugins/
+vim/vim.symlink/bundle/
 vim/vim.symlink/.netrwhist
