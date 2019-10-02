@@ -12,3 +12,6 @@ zstyle :compinstall filename '/Users/jack/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+source $(brew --prefix antibody)/zsh_plugins.sh
+
+alias antibuild="antibody bundle < ~/.dotfiles/zsh_plugins > $(brew --prefix antibody)/zsh_plugins.sh"
