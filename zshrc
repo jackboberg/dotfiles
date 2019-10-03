@@ -14,4 +14,4 @@ compinit
 # End of lines added by compinstall
 source $(brew --prefix antibody)/zsh_plugins.sh
 
-alias antibuild="antibody bundle < ~/.dotfiles/zsh_plugins > $(brew --prefix antibody)/zsh_plugins.sh"
+alias antibuild="antibody bundle < ~/.dotfiles/zsh/_plugins > $(brew --prefix antibody)/zsh_plugins.sh"
