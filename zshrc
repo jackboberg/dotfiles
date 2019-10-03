@@ -14,7 +14,7 @@ bindkey -v
 zstyle :compinstall filename '/Users/jack/.zshrc'
 
 # End of lines added by compinstall
-export DOT=$HOME/.dotfiles
+export DOT=~/.dotfiles
 
 # find zsh files
 typeset -U config_files
@@ -46,5 +46,7 @@ done
 
 unset config_files
 
+# load local config
+[ -f ~/.localrc ] && . ~/.localrc
 
 # zprof
