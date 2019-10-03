@@ -46,7 +46,5 @@ done
 
 unset config_files
 
-# antibody
-alias antibuild="antibody bundle < ~/.dotfiles/zsh/_plugins > $(brew --prefix antibody)/zsh_plugins.sh"
 
 # zprof
