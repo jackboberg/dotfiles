@@ -1,0 +1,24 @@
+[plugins.zsh-async]
+github = "mafredri/zsh-async"
+
+[plugins.pure]
+github = "sindresorhus/pure"
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+
+[plugins.zsh-history-substring-search]
+github = "zsh-users/zsh-history-substring-search"
+
+[plugins.enhancd]
+github = "b4b4r07/enhancd"
+
+[plugins.git_local]
+local = "~/.dotfiles/zsh/git"
+
+[plugins.asdf]
+local = "~/.dotfiles/zsh/asdf"
+
+[plugins.alias]
+local = "~/.dotfiles/zsh"
+use = ["alias.zsh"]
