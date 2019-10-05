@@ -4,8 +4,8 @@ github = "mafredri/zsh-async"
 [plugins.pure]
 github = "sindresorhus/pure"
 
-[plugins.zsh-syntax-highlighting]
-github = "zsh-users/zsh-syntax-highlighting"
+[plugins.syntax-highlighting]
+github="zdharma/fast-syntax-highlighting"
 
 [plugins.zsh-history-substring-search]
 github = "zsh-users/zsh-history-substring-search"
