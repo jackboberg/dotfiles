@@ -3,10 +3,7 @@
 # zmodload zsh/zprof
 
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=10000
-setopt appendhistory beep extendedglob nomatch notify
+setopt beep extendedglob nomatch notify
 unsetopt autocd
 bindkey -v
 # End of lines configured by zsh-newuser-install
