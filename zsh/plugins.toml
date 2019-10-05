@@ -1,7 +1,7 @@
 [plugins.zsh-async]
 github = "mafredri/zsh-async"
 
-[plugins.pure]
+[plugins.prompt]
 github = "sindresorhus/pure"
 
 [plugins.syntax-highlighting]
@@ -9,6 +9,9 @@ github="zdharma/fast-syntax-highlighting"
 
 [plugins.history-substring-search]
 github = "zsh-users/zsh-history-substring-search"
+
+[plugins.history-fzy]
+gist = "shogogg/86f13a0aff12b9a31efb083946a500cb"
 
 [plugins.history]
 local = "~/.dotfiles/zsh"
