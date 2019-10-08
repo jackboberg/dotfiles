@@ -9,9 +9,14 @@ Pry.config.editor = 'vim'
 begin
   require 'awesome_print'
   AwesomePrint.pry!
-  Pry.config.print = proc { |output, value| Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output) }
+  # Pry.config.print = proc { |output, value| Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output) }
 rescue LoadError => err
   warn "Couldn't load awesome_print: #{err}"
+end
+
+# add ability to disable pry with ENV
+Pry.hooks.add_hook(:when_started, "disable_pry") do |output, binding, pry|
+  exit if ENV['DEBUG'] == '0'
 end
 
 # Toys methods
@@ -30,6 +35,9 @@ end
 
 if defined?(Rails) && Rails.env
   require 'logger'
+  require 'rails/console/app'
+
+  include Rails::ConsoleMethods
 
   if defined?(ActiveRecord)
     ActiveRecord::Base.logger = Logger.new(STDOUT)

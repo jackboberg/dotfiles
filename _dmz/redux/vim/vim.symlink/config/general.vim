@@ -96,3 +96,7 @@
 
 " show Git diff in window split when commiting
   au FileType gitcommit DiffGitCached | wincmd L | wincmd p
+
+" " autosave everything (not working as expected)
+"   au FocusLost * silent! wa
+"   set autowrite

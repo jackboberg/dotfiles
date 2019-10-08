@@ -22,6 +22,7 @@
 
 [alias]
   co                = checkout
+  amend             = commit --amend --no-edit
   count             = !git shortlog -sn
   assume            = update-index --assume-unchanged
   unassume          = update-index --no-assume-unchanged
@@ -34,6 +35,7 @@
   rank-contributers = !$DOT/bin/git-rank-contributers
   undo              = !$DOT/bin/git-undo
   ec                = config --global -e
+  bs                = branch-select
 
 [branch]
   autosetuprebase = always
@@ -46,3 +48,8 @@
 
 [commit]
   gpgsign = true
+
+[rebase]
+  autoStash = true
+[rerere]
+	enabled = true

@@ -42,13 +42,23 @@ Thumbs.db
 *.esproj
 *.espressostorage
 .rspec
+.vscode/*
 
 # package bundles #
 ###################
 vendor/ruby
+vendor/bundle
 node_modules
 
 # sensitive data #
 ##################
 config/database.yml
 config/sensitive.yml
+.env
+
+# user specific
+.jack
+.local
+
+tsconfig.json
+TODO.md

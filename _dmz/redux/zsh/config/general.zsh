@@ -1,9 +1,3 @@
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export PS1='%m:%3~$(git_info_for_prompt)%# '
-# else
-#   export PS1='%3~$(git_info_for_prompt)%# '
-# fi
-
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 
@@ -11,18 +5,17 @@ fpath=($DOT/zsh/functions $fpath)
 
 autoload -U $DOT/zsh/functions/*(:t)
 
-# HISTFILE=~/.zsh_history
-# HISTSIZE=10000
-# SAVEHIST=10000
-
 # dont nice background tasks
 setopt NO_BG_NICE
 setopt NO_HUP
 setopt NO_LIST_BEEP
+
 # allow functions to have local options
-setopt LOCAL_OPTIONS 
+# FIXME: breaks pure prompt
+# setopt LOCAL_OPTIONS
+
 # allow functions to have local traps
-setopt LOCAL_TRAPS 
+setopt LOCAL_TRAPS
 setopt PROMPT_SUBST
 setopt CORRECT
 setopt COMPLETE_IN_WORD

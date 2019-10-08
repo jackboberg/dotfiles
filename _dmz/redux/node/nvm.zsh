@@ -1,4 +1,4 @@
-export NVM_DIR="$HOME/.nvm"
+export NVM_DIR=/usr/local/opt/nvm
 
 # lukechilds/zsh-nvm
 # export NVM_LAZY_LOAD=true

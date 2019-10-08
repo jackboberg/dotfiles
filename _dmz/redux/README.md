@@ -28,3 +28,18 @@ There's a few special files in the hierarchy.
   last so that they get loaded after we set up zsh autocomplete functions.
 
 [holman]: http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/
+
+
+## notes
+
+```
+npm i tern -g # for emacs
+```
+
+- homebrew
+  (/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)")
+  - rcm
+  - zsh
+    - antigen: symlink in .zshrc
+      - nvm
+        - node (script all the things)

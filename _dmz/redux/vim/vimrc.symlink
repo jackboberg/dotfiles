@@ -35,7 +35,7 @@
 
 " Snippets
   Plugin 'SirVer/ultisnips'
-  Plugin 'honza/vim-snippets'
+  Plugin 'file:///Users/jack/Documents/Projects/vim-snippets'
 
 " development
   Plugin 'w0rp/ale'
@@ -46,6 +46,8 @@
   Plugin 'tpope/vim-endwise'
   Plugin 'tpope/vim-rails'
   Plugin 'ngmy/vim-rubocop'
+
+  " Plugin 'tpope/vim-unimpaired'
 
 " All of your Plugins must be added before the following line (required!)
   call vundle#end()
