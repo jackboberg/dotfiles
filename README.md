@@ -13,6 +13,6 @@ some functionality.
 
 ## rcm: manage 
 
-    rcup -v -d /usr/local/share/dotfiles
+    rcup -d /usr/local/share/dotfiles rcrc && rcup
     
-this will include `.rcrc` so future usage targets this directory
+First we symlink just the `rcrc` file, then allow that config to drive the default linking strategy. 
