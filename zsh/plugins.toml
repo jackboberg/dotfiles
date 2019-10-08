@@ -14,18 +14,18 @@ github = "zsh-users/zsh-history-substring-search"
 gist = "shogogg/86f13a0aff12b9a31efb083946a500cb"
 
 [plugins.history]
-local = "~/.dotfiles/zsh"
+local = "/usr/local/share/dotfiles/zsh"
 use = ["history.zsh"]
 
 [plugins.enhancd]
 github = "b4b4r07/enhancd"
 
 [plugins.git_local]
-local = "~/.dotfiles/zsh/git"
+local = "/usr/local/share/dotfiles/zsh/git"
 
 [plugins.asdf]
-local = "~/.dotfiles/zsh/asdf"
+local = "/usr/local/share/dotfiles/zsh/asdf"
 
 [plugins.alias]
-local = "~/.dotfiles/zsh"
+local = "/usr/local/share/dotfiles/zsh"
 use = ["alias.zsh"]

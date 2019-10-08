@@ -1,1 +1,2 @@
+DOTFILES_DIRS="/usr/local/share/dotfiles"
 EXCLUDES="zsh"
