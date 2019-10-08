@@ -1,13 +1,6 @@
 # @jackboberg has dotfiles
 
-
-## dotfiles
-
-Insipred by [Zach Holman][holman], these dotfiles are how I personalize my
-system.
-
-[holman]: http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/
-
+Insipred by [Zach Holman][holman], this are how I personalize my system.
 
 ## install
 
@@ -18,12 +11,6 @@ system.
 The install rake task will symlink the appropriate files in `.dotfiles` to your
 home directory. Everything is configured and tweaked within `~/.dotfiles`,
 though.
-
-### vim
-
-I use vundle to manage my vim plugins, so those need to be installed.
-
-    vim +BundleInstall +qall
 
 ## components
 
@@ -39,3 +26,5 @@ There's a few special files in the hierarchy.
   symlinked in when you run `rake install`.
 - **topic/\*.completion.sh**: Any files ending in `completion.sh` get loaded
   last so that they get loaded after we set up zsh autocomplete functions.
+
+[holman]: http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/

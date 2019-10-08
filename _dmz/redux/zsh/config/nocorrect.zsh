@@ -1,0 +1,1 @@
+alias lab='nocorrect lab'

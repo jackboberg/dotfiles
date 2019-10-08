@@ -1,0 +1,59 @@
+" use zsh
+  set shell=/usr/local/bin/zsh
+
+" ------------------------------------------------------------------------------
+" vundle
+" ------------------------------------------------------------------------------
+
+" be iMproved (required!)
+  set nocompatible
+
+" turn on filetype while setting up (required!)
+  filetype off
+
+" set the runtime path to include Vundle and initialize
+  set rtp+=~/.vim/bundle/Vundle.vim
+  " call vundle#begin('~/.vim/plugins')
+  call vundle#begin()
+
+" let Vundle manage Vundle (required!)
+  Plugin 'VundleVim/Vundle.vim'
+
+" colors
+  Plugin 'chriskempson/base16-vim'
+
+" file tree explorer
+  Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
+  Plugin 'ctrlpvim/ctrlp.vim'
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'mileszs/ack.vim'
+
+" movement
+  Plugin 'tpope/vim-repeat'
+  Plugin 'tpope/vim-surround'
+
+" Snippets
+  Plugin 'SirVer/ultisnips'
+  Plugin 'honza/vim-snippets'
+
+" development
+  Plugin 'w0rp/ale'
+  Plugin 'tpope/vim-commentary'
+  Plugin 'mattn/emmet-vim'
+  Plugin 'airblade/vim-gitgutter'
+  Plugin 'jelera/vim-javascript-syntax'
+  Plugin 'tpope/vim-endwise'
+  Plugin 'tpope/vim-rails'
+  Plugin 'ngmy/vim-rubocop'
+
+" All of your Plugins must be added before the following line (required!)
+  call vundle#end()
+  filetype plugin indent on
+
+" ------------------------------------------------------------------------------
+" include organized config
+" ------------------------------------------------------------------------------
+  runtime! config/general.vim
+  runtime! config/*.vim
+

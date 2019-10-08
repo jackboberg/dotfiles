@@ -1,0 +1,4 @@
+# create directory and change to it
+mkd () {
+    mkdir -pv "${1}" && cd "${1}"
+}
