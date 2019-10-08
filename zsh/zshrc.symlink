@@ -1,0 +1,8 @@
+export EDITOR=$(which vim)
+
+export DOT=$HOME/.dotfiles
+export PROJECTS=$HOME/Documents/Projects
+export SANDBOX=$HOME/Documents/Sandbox
+
+source $(brew --prefix antigen)/share/antigen/antigen.zsh
+antigen init $DOT/zsh/.antigenrc

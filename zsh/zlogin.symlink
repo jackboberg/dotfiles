@@ -1,0 +1,4 @@
+if [[ -a ~/.zshrc ]]
+then
+  source ~/.zshrc
+fi
