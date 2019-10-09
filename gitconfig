@@ -35,7 +35,7 @@
   rank-contributers = !$DOT/bin/git-rank-contributers
   undo              = !$DOT/bin/git-undo
   ec                = config --global -e
-  bs                = branch-select
+  bs                = !git checkout $(git branch | cut -c 3- | fzy)
 
 [branch]
   autosetuprebase = always
