@@ -1,7 +1,3 @@
-[include]
-  # keep your user name and 3rd-party config in a more private file
-  path = ~/.gitconfig.private
-
 [core]
   excludesfile = ~/.gitignore
   quotepath = false
@@ -56,3 +52,7 @@
 
 [hub]
   protocol = https
+
+[include]
+  # keep your user name and 3rd-party config in a more private file
+  path = ~/.gitconfig.local
