@@ -24,7 +24,9 @@ github = "b4b4r07/enhancd"
 local = "/usr/local/share/dotfiles/zsh/git"
 
 [plugins.asdf]
-local = "/usr/local/share/dotfiles/zsh/asdf"
+github = "robbyrussell/oh-my-zsh"
+directory = "plugins/{{ name }}"
+
 
 [plugins.alias]
 local = "/usr/local/share/dotfiles/zsh"
