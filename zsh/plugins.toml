@@ -13,21 +13,13 @@ github = "zsh-users/zsh-history-substring-search"
 [plugins.history-fzy]
 gist = "shogogg/86f13a0aff12b9a31efb083946a500cb"
 
-[plugins.history]
-local = "/usr/local/share/dotfiles/zsh"
-use = ["history.zsh"]
-
 [plugins.enhancd]
 github = "b4b4r07/enhancd"
-
-[plugins.git_local]
-local = "/usr/local/share/dotfiles/zsh/git"
 
 [plugins.asdf]
 github = "robbyrussell/oh-my-zsh"
 directory = "plugins/{{ name }}"
 
+[plugins.dotfiles]
+local = "/usr/local/share/dotfiles/zsh/plugins"
 
-[plugins.alias]
-local = "/usr/local/share/dotfiles/zsh"
-use = ["alias.zsh"]
