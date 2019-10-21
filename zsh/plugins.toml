@@ -20,6 +20,21 @@ github = "b4b4r07/enhancd"
 github = "robbyrussell/oh-my-zsh"
 directory = "plugins/{{ name }}"
 
+[plugins.docker]
+github = "robbyrussell/oh-my-zsh"
+directory = "plugins/{{ name }}"
+apply = ["fpath"]
+
+[plugins.docker-compose]
+github = "robbyrussell/oh-my-zsh"
+directory = "plugins/{{ name }}"
+apply = ["source", "fpath"]
+
+# update completions
+[plugins.compinit]
+inline = "compinit"
+
+# Load local plugins last, so they can overwrite config
 [plugins.dotfiles]
 local = "/usr/local/share/dotfiles/zsh/plugins"
 
