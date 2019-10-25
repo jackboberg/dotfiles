@@ -1,6 +1,9 @@
 [plugins.zsh-async]
 github = "mafredri/zsh-async"
 
+[plugins.promptinit]
+inline = "autoload -U promptinit; promptinit"
+
 [plugins.prompt]
 github = "sindresorhus/pure"
 
