@@ -27,4 +27,6 @@ source <(sheldon --root $DOT/zsh source)
 # load local config
 [ -f ~/.localrc ] && . ~/.localrc
 
+eval "$(starship init zsh)"
+
 # zprof
