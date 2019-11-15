@@ -1,2 +1,3 @@
 DOTFILES_DIRS="/usr/local/share/dotfiles"
 EXCLUDES="CODE_OF_CONDUCT.md LICENSE README.md zsh"
+SYMLINK_DIRS="git-template"
