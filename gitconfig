@@ -53,6 +53,9 @@
 [hub]
   protocol = https
 
+[init]
+	templateDir = /Users/jack/.git-template
+
 [include]
   # keep your user name and 3rd-party config in a more private file
   path = ~/.gitconfig.local
