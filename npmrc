@@ -1,0 +1,12 @@
+registry=https://registry.npmjs.org/
+cache=/usr/local/var/npm
+init.license=MIT
+init.author.name=Jack Boberg
+init.author.email=hello@jackboberg.info
+init.author.url=https://jackboberg.info/
+init.version=0.0.0
+save-prefix=^
+spin=true
+loglevel=silent
+email=hello@jackboberg.info
+save=true
