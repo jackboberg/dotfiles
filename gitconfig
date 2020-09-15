@@ -64,3 +64,6 @@
 [include]
   # keep your user name and 3rd-party config in a more private file
   path = ~/.gitconfig.local
+
+[ghq]
+  root = ~/src
