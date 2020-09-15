@@ -1,6 +1,10 @@
 [core]
   excludesfile = ~/.gitignore
   quotepath = false
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
 
 [color]
   ui = true
@@ -47,14 +51,15 @@
 
 [rebase]
   autoStash = true
+
 [rerere]
-	enabled = true
+  enabled = true
 
 [hub]
   protocol = https
 
 [init]
-	templateDir = /Users/jack/.git-template
+  templateDir = /Users/jack/.git-template
 
 [include]
   # keep your user name and 3rd-party config in a more private file
