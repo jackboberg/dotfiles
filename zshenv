@@ -1,10 +1,14 @@
 export DOT=/usr/local/share/dotfiles
+export SRC=$(/usr/local/bin/ghq root)
+
+export ASDF_DIR=$(/usr/local/bin/brew --prefix asdf)
 
 export ENHANCD_COMMAND=c
 
-# even more local bin directories
-LOCAL_BIN_PATH=./.bin:./bin:$HOME/.bin
-# DOOM!
-DOOM_BIN=$(/usr/local/bin/ghq root)/github.com/hlissner/doom-emacs/bin
+PKG_ICU4C=/usr/local/opt/icu4c/lib/pkgconfig
+PKG_KRB5=/usr/local/opt/krb5/lib/pkgconfig
+PKG_LIBEDIT=/usr/local/opt/libedit/lib/pkgconfig
+PKG_LIBXML2=/usr/local/opt/libxml2/lib/pkgconfig
+PKG_OPENSSL=/usr/local/opt/openssl@1.1/lib/pkgconfig
 
-export PATH=$LOCAL_BIN_PATH:$DOOM_BIN:$PATH
+export PKG_CONFIG_PATH=$PKG_ICU4C:$PKG_LIBEDIT:$PKG_LIBXML2:$PKG_OPENSSL:$PKG_CONFIG_PATH
