@@ -52,7 +52,6 @@ node_modules
 
 # sensitive data #
 ##################
-config/database.yml
 config/sensitive.yml
 .env
 
