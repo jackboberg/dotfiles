@@ -1,5 +1,5 @@
-export DOT=/usr/local/share/dotfiles
 export SRC=$(/usr/local/bin/ghq root)
+export DOT=$SRC/github.com/jackboberg/dotfiles
 
 export ASDF_DIR=$(/usr/local/bin/brew --prefix asdf)
 
