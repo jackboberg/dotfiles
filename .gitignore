@@ -1,2 +1,3 @@
-zsh/repositories
-zsh/plugins.lock
+# sheldon artifacts
+sheldon/repos
+sheldon/plugins.lock
