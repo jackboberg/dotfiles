@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+(setq user-full-name "Jack Boberg"
+      user-mail-address "hello@jackboberg.info")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -24,8 +24,8 @@
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+; `load-theme' function. This is the default:
+(setq doom-theme 'doom-molokai)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -33,7 +33,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
@@ -52,3 +52,27 @@
 ;;
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
+
+(setq doom-localleader-key ",")
+
+(map! :leader
+      :desc "Suspend"           "z"     #'suspend-frame)
+
+;; SPC-num quick switches numbered windows
+;; (map! :leader
+;;       "0" #'winum-select-window-0-or-10
+;;       "1" #'winum-select-window-1
+;;       "2" #'winum-select-window-2
+;;       "3" #'winum-select-window-3
+;;       "4" #'winum-select-window-4
+;;       "5" #'winum-select-window-5
+;;       "6" #'winum-select-window-6
+;;       "7" #'winum-select-window-7
+;;       "8" #'winum-select-window-8
+;;       "9" #'winum-select-window-9
+;;       )
+
+;; TAB completion
+;; https://github.com/company-mode/company-mode/wiki/Switching-from-Vim
+(company-tng-configure-default)
+
