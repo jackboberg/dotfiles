@@ -39,3 +39,7 @@ inline = "compinit"
 [plugins.dotfiles]
 local = "/usr/local/share/dotfiles/zsh/plugins"
 
+[plugins.brew-completions]
+local = "/usr/local/etc/bash_completion.d"
+apply = ["fpath"]
+

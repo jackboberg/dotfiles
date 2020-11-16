@@ -12,3 +12,5 @@ PKG_LIBXML2=/usr/local/opt/libxml2/lib/pkgconfig
 PKG_OPENSSL=/usr/local/opt/openssl@1.1/lib/pkgconfig
 
 export PKG_CONFIG_PATH=$PKG_ICU4C:$PKG_LIBEDIT:$PKG_LIBXML2:$PKG_OPENSSL:$PKG_CONFIG_PATH
+
+export EDITOR=emacs

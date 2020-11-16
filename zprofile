@@ -1,6 +1,9 @@
 # modify PATH here
 # https://unix.stackexchange.com/questions/22979/path-helper-and-zsh
 
+# homebrew sbin
+PATH=$PATH:/usr/local/sbin
+
 # DOOM!
 DOOM_BIN=$SRC/github.com/hlissner/doom-emacs/bin
 PATH=$PATH:$DOOM_BIN
