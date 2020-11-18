@@ -1,4 +1,6 @@
- pry
- rubocop
- rubocop-rails
- solargraph
+amazing_print
+bundler
+pry
+rubocop
+rubocop-rails
+solargraph
