@@ -1,3 +1,4 @@
+ pry
  rubocop
  rubocop-rails
  solargraph
