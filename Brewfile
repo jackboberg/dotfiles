@@ -25,6 +25,7 @@ brew "cmake"
 brew "curl"
 brew "dog"
 brew "gettext"
+brew "libffi"
 brew "pkg-config"
 brew "emacs", restart_service: true
 brew "entr"
