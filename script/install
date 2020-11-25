@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# script/install: Clone repository and execute setup
+
+set -euo pipefail
+IFS=$'\n\t'
+
+REPO="https://github.com/jackboberg/dotfiles.git"
+SRC_DIR="${HOME}/src/github.com/jackboberg"
+DOT_DIR="${SRC_DIR}/dotfiles"
+
+install () {
+    echo "==> script/install…"
+    get_dotfiles
+    setup
+}
+
+get_dotfiles () {
+    echo "==> Getting dotfiles…"
+    if [ -d "$DOT_DIR" ]; then
+        echo "==> $DOT_DIR exists…"
+        exit 1
+    fi
+
+    mkdir -p $SRC_DIR
+    git clone $REPO $DOT_DIR
+}
+
+setup () {
+    echo "==> Setting up dotfiles…"
+    cd $DOT_DIR
+    script/setup
+}
+
+if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
+    install "$@"
+fi
