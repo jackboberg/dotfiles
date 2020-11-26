@@ -1,2 +1,2 @@
-EXCLUDES="CODE_OF_CONDUCT.md LICENSE README.md script zsh"
-SYMLINK_DIRS="git-template doom.d sheldon bundle bin"
+EXCLUDES="CODE_OF_CONDUCT.md LICENSE README.md script"
+SYMLINK_DIRS="git-template doom.d sheldon bundle bin zsh"

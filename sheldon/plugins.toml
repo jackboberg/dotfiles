@@ -37,7 +37,7 @@ inline = "compinit"
 
 # Load local plugins last, so they can overwrite config
 [plugins.dotfiles]
-local = "~/src/github.com/jackboberg/dotfiles/zsh"
+local = "~/.zsh"
 
 [plugins.brew-completions]
 local = "/usr/local/etc/bash_completion.d"
