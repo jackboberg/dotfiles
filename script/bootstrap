@@ -8,6 +8,7 @@ IFS=$'\n\t'
 bootstrap () {
     cd "$(dirname "$0")/.."
     echo "==> script/bootstrap…"
+
     bootstrap_xcode
     bootstrap_homebrew
 }

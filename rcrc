@@ -1,3 +1,2 @@
-DOTFILES_DIRS="$HOME/src/github.com/jackboberg/dotfiles"
-EXCLUDES="CODE_OF_CONDUCT.md LICENSE README.md zsh"
+EXCLUDES="CODE_OF_CONDUCT.md LICENSE README.md script zsh"
 SYMLINK_DIRS="git-template doom.d sheldon bundle bin"

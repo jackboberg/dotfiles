@@ -10,7 +10,22 @@ setup () {
     script/bootstrap
 
     echo "==> script/setup…"
+    setup_rc
     setup_emacs
+}
+
+setup_rc () {
+    echo "==> Setting up RC files…"
+    local dir
+
+    # Set this repo as the source directory.
+    dir=$(pwd)
+    echo "DOTFILES_DIRS=\"${dir}\"" >> ./rcrc
+
+    # First we symbolically link just the `rcrc` file, then allow that
+    # configuration to drive the default linking strategy.
+    rcup -d $dir rcrc
+    rcup
 }
 
 setup_emacs () {
@@ -18,7 +33,7 @@ setup_emacs () {
     ghq get plexus/chemacs
     ghq get hlissner/doom-emacs
     ghq get syl20bnr/spacemacs
-    $SRC/github.com/plexus/chemacs/install.sh
+    $(ghq list -p plexus/chemacs)/install.sh
 }
 
 if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then

@@ -5,7 +5,7 @@
 PATH=$PATH:/usr/local/sbin
 
 # DOOM!
-DOOM_BIN=$SRC/github.com/hlissner/doom-emacs/bin
+DOOM_BIN=$(ghq list -p hlissner/doom-emacs)/bin
 PATH=$PATH:$DOOM_BIN
 
 # asdf
