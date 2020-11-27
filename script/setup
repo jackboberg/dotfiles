@@ -13,6 +13,7 @@ setup () {
     setup_rc
     setup_iterm
     setup_emacs
+    setup_asdf
 }
 
 setup_iterm () {
@@ -47,6 +48,11 @@ setup_emacs () {
     ghq get hlissner/doom-emacs
     ghq get syl20bnr/spacemacs
     $(ghq list -p plexus/chemacs)/install.sh
+}
+
+setup_asdf () {
+    echo "==> Setting up global tools…"
+    asdf install
 }
 
 if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
