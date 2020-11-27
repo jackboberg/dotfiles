@@ -11,21 +11,10 @@ setup () {
 
     echo "==> script/setup…"
     setup_rc
+    setup_secure_files
     setup_iterm
     setup_emacs
     setup_asdf
-}
-
-setup_iterm () {
-    echo "==> Setting up iTerm2 preferences…"
-    local dir
-
-    # Specify the preferences directory
-    dir="$(pwd)/iTerm2"
-    defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${dir}"
-
-    # Tell iTerm2 to use the custom preferences in the directory
-    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 }
 
 setup_rc () {
@@ -40,6 +29,27 @@ setup_rc () {
     # configuration to drive the default linking strategy.
     rcup -d $dir rcrc
     rcup
+}
+
+setup_secure_files () {
+    echo "==> Setting up secure files…"
+    local icloud_dir
+    icloud_dir="${HOME}/Library/Mobile\ Documents/com\~apple\~CloudDocs"
+
+    # symbolically link private git config
+    ln -s "${icloud_dir}/gitconfig.local" ~/.gitconfig.local
+}
+
+setup_iterm () {
+    echo "==> Setting up iTerm2 preferences…"
+    local dir
+
+    # Specify the preferences directory
+    dir="$(pwd)/iTerm2"
+    defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${dir}"
+
+    # Tell iTerm2 to use the custom preferences in the directory
+    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 }
 
 setup_emacs () {
