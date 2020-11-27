@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# script/update: Update system for current checkout.
+
+set -euo pipefail
+IFS=$'\n\t'
+
+update () {
+    cd "$(dirname "$0")/.."
+    script/bootstrap
+
+    echo "==> script/update…"
+}
+
+if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
+    update "$@"
+fi
