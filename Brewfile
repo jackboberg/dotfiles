@@ -32,8 +32,6 @@ brew "awscli"
 brew "bat"
 # Parser generator
 brew "bison"
-# Like cat but displays content with syntax highlighting
-brew "ccat"
 # Cross-platform make
 brew "cmake"
 # Get a file from an HTTP, HTTPS or FTP server

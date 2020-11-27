@@ -5,16 +5,16 @@
         "revision": "209f59cda890de69b74c224982591642c21323d3"
       },
       "homebrew/bundle": {
-        "revision": "d1a530ada501e983aef2748411b947b8c5696ac9"
+        "revision": "2e2df66e2d55c9ab6606e5a406e5b29f085a4d1b"
       },
       "homebrew/cask": {
-        "revision": "9e287392bdc7b26ede9732a523b4d47eb3d84714"
+        "revision": "46f063d58d0d0263b70d157924205932d0b648da"
       },
       "homebrew/cask-fonts": {
-        "revision": "665dc41cc360c8e8b61f0d24890d42ea777655de"
+        "revision": "34fc07814a968a4a887ea6ec1a77f4f3df2b7bc6"
       },
       "homebrew/core": {
-        "revision": "deda5a05551ab74d5313af112d3bb2054f9b6af8"
+        "revision": "ff776baaa8212cc5ee1fd19566fa791c3f5d7302"
       },
       "homebrew/services": {
         "revision": "6e2d98b9712c1b51e598842555980b0a5c171dcf"
@@ -269,7 +269,7 @@
         }
       },
       "bat": {
-        "version": "0.16.0",
+        "version": "0.17.1",
         "bottle": {
           "cellar": ":any_skip_relocation",
           "prefix": "/usr/local",
@@ -356,7 +356,7 @@
         }
       },
       "cmake": {
-        "version": "3.19.0_1",
+        "version": "3.19.1",
         "bottle": {
           "cellar": ":any_skip_relocation",
           "prefix": "/usr/local",
@@ -1445,22 +1445,22 @@
         }
       },
       "pre-commit": {
-        "version": "2.9.0",
+        "version": "2.9.2",
         "bottle": {
           "cellar": ":any",
           "prefix": "/usr/local",
           "files": {
             "big_sur": {
-              "url": "https://homebrew.bintray.com/bottles/pre-commit-2.9.0.big_sur.bottle.tar.gz",
-              "sha256": "4b8022f413acf8bda0cccb9ef457568b1f9738c99f350d6da4e847deb637872a"
+              "url": "https://homebrew.bintray.com/bottles/pre-commit-2.9.2.big_sur.bottle.tar.gz",
+              "sha256": "0a29e802042256d365d346c24e11a8077e2589e512ced7c6c78ba91025f4798a"
             },
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/pre-commit-2.9.0.catalina.bottle.tar.gz",
-              "sha256": "57dec71ecbcca3f870d221952ca2f798db71a9d2d5b1ff16d5726e4494798506"
+              "url": "https://homebrew.bintray.com/bottles/pre-commit-2.9.2.catalina.bottle.tar.gz",
+              "sha256": "1f5b8f36ad2e4b17968280dd0eaf2010e476d28bf99d8dce42905c48a123926d"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/pre-commit-2.9.0.mojave.bottle.tar.gz",
-              "sha256": "c3e7a1e0655353c905e0f91f53f8b9bdab2d9abc72b76973b3b482c1d18d09dd"
+              "url": "https://homebrew.bintray.com/bottles/pre-commit-2.9.2.mojave.bottle.tar.gz",
+              "sha256": "e0ac4ae7653109be1d2a5a2cbdddca683105967eff598e0a9d009ad6bf3aa318"
             }
           }
         }
@@ -1914,7 +1914,7 @@
       },
       "Sequel Ace": {
         "id": "1518036000",
-        "version": "2.3.0"
+        "version": "2.3.2"
       },
       "Slack": {
         "id": "803453959",
@@ -1929,9 +1929,9 @@
   "system": {
     "macos": {
       "catalina": {
-        "HOMEBREW_VERSION": "2.5.11-214-g918fbcc",
+        "HOMEBREW_VERSION": "2.5.12-261-g486e76c",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "deda5a05551ab74d5313af112d3bb2054f9b6af8",
+        "Homebrew/homebrew-core": "ff776baaa8212cc5ee1fd19566fa791c3f5d7302",
         "CLT": "12.2.0.0.1.1604628099",
         "Xcode": "12.0",
         "macOS": "10.15.7"
