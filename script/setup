@@ -43,13 +43,15 @@ setup_secure_files () {
 setup_iterm () {
     echo "==> Setting up iTerm2 preferences…"
     local dir
+    local plist
+    plist="com.googlecode.iterm2.plist"
 
     # Specify the preferences directory
     dir="$(pwd)/iTerm2"
-    defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${dir}"
+    defaults write "${plist}" PrefsCustomFolder -string "${dir}"
 
     # Tell iTerm2 to use the custom preferences in the directory
-    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+    defaults write "${plist}" LoadPrefsFromCustomFolder -bool true
 }
 
 setup_emacs () {
