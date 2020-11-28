@@ -32,6 +32,4 @@ setup () {
     script/setup
 }
 
-if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
-    install "$@"
-fi
+install "$@"
