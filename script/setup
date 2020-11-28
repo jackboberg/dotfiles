@@ -38,6 +38,9 @@ setup_secure_files () {
 
     # symbolically link private git config
     ln -s "${icloud_dir}/gitconfig.local" ~/.gitconfig.local
+
+    # symbolically link private zsh config
+    ln -s "${icloud_dir}/rc.local" ~/.localrc
 }
 
 setup_iterm () {
