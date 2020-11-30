@@ -153,13 +153,15 @@ cask "font-fira-code"
 cask "font-jetbrains-mono-nerd-font"
 cask "insomnia"
 cask "iterm2"
+cask "vagrant"
+cask "virtualbox"
+cask "virtualbox-extension-pack"
 mas "1Password 7", id: 1333542190
 mas "Agenda", id: 1287445660
 mas "Boop", id: 1518425043
 mas "DaisyDisk", id: 411643860
 mas "Dato", id: 1470584107
 mas "Drafts", id: 1435957248
-mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
