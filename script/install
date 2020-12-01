@@ -11,8 +11,17 @@ DOT_DIR="${SRC_DIR}/dotfiles"
 
 install () {
     echo "==> script/install…"
+    install_xcode
     get_dotfiles
     setup
+}
+
+install_xcode () {
+    echo "==> Looking for Command Line Tools…"
+    xcode-select --print-path >/dev/null 2>&1 || {
+        echo "==> Installing Command Line Tools…"
+        xcode-select --install
+    }
 }
 
 get_dotfiles () {
