@@ -5,16 +5,16 @@
         "revision": "209f59cda890de69b74c224982591642c21323d3"
       },
       "homebrew/bundle": {
-        "revision": "034459da8e6cd11076c578f0ac067fd50d1b14fa"
+        "revision": "e954fda6346b405f3ebe60ac4af201bfb35b674a"
       },
       "homebrew/cask": {
-        "revision": "52d4e1ee8cc20f550ea63999b1960c74dfefe994"
+        "revision": "65ee1b59313485b92036e851b1a41ed1cc1cdc85"
       },
       "homebrew/cask-fonts": {
-        "revision": "22720cb6a11dfd2f1542aaea2f7e3619de765a14"
+        "revision": "40b132f111dae71032287dbba323e0d758b003e6"
       },
       "homebrew/core": {
-        "revision": "db30a3267f75d6e480fc05ce64580a85d4c4bc32"
+        "revision": "743e404a62f38cb3ab6f579e8c632ab76a0f0e21"
       },
       "homebrew/services": {
         "revision": "14c1da7bb28345d15ab4307dd6c8dcab55013f9e"
@@ -244,22 +244,22 @@
         }
       },
       "awscli": {
-        "version": "2.1.4",
+        "version": "2.1.5",
         "bottle": {
           "cellar": "/usr/local/Cellar",
           "prefix": "/usr/local",
           "files": {
             "big_sur": {
-              "url": "https://homebrew.bintray.com/bottles/awscli-2.1.4.big_sur.bottle.tar.gz",
-              "sha256": "c2683ca9f904ec563d27e9ac124ae257b2347a5589408aa04b3d8f77dc58d39b"
+              "url": "https://homebrew.bintray.com/bottles/awscli-2.1.5.big_sur.bottle.tar.gz",
+              "sha256": "c051650b9d3b17f66a98f884d4e49b88b9795c6c2c336efe843098650f0c00ba"
             },
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/awscli-2.1.4.catalina.bottle.tar.gz",
-              "sha256": "714e7821d45ddcc8aba6468049d68decb000a7537eb69ee5b0a803d2c57d518e"
+              "url": "https://homebrew.bintray.com/bottles/awscli-2.1.5.catalina.bottle.tar.gz",
+              "sha256": "8ad831c15da0b0ed4cb7e064267f31d302bfd5e876e5915a8d043a816029f60a"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/awscli-2.1.4.mojave.bottle.tar.gz",
-              "sha256": "21df0c7e82c7acd0d9f8b3ee15ddc1aa7c1fe5003c9599ed2e2a8f80bd092f03"
+              "url": "https://homebrew.bintray.com/bottles/awscli-2.1.5.mojave.bottle.tar.gz",
+              "sha256": "7357efa2fc836140d771861a954efffc436cdab0cd716cba397852366619ea39"
             }
           }
         }
@@ -506,26 +506,22 @@
         }
       },
       "exa": {
-        "version": "0.9.0",
+        "version": "0.9.0_1",
         "bottle": {
           "cellar": ":any_skip_relocation",
           "prefix": "/usr/local",
           "files": {
             "big_sur": {
-              "url": "https://homebrew.bintray.com/bottles/exa-0.9.0.big_sur.bottle.4.tar.gz",
-              "sha256": "3f7b47cd10cce1ab2e51f59d0b3bea05153b5027e4541091e0eeeb5510f585db"
+              "url": "https://homebrew.bintray.com/bottles/exa-0.9.0_1.big_sur.bottle.tar.gz",
+              "sha256": "3ee8e461f50fa870cd035a44ba9973e26192953e235adef9d2936f2bdab0b1d3"
             },
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/exa-0.9.0.catalina.bottle.4.tar.gz",
-              "sha256": "b0c1b9366cb7c6753a9e8467b5fe1e4dcbc3e148df59b5d79bcd8b8814c30443"
+              "url": "https://homebrew.bintray.com/bottles/exa-0.9.0_1.catalina.bottle.tar.gz",
+              "sha256": "33332800316bd21da72087c8d21d2948e7b0bf678fc9d3c562c9e84c139b6de3"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/exa-0.9.0.mojave.bottle.4.tar.gz",
-              "sha256": "2770559fa1082afeb6755a38ed8b5c2f72b7e88e41132caec9c2a22b7164ef69"
-            },
-            "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/exa-0.9.0.high_sierra.bottle.4.tar.gz",
-              "sha256": "f93d7eaeeffbf42a471aaec0d466767187f47fa68d25e0cb448763ee169d30c9"
+              "url": "https://homebrew.bintray.com/bottles/exa-0.9.0_1.mojave.bottle.tar.gz",
+              "sha256": "507c870baae72b7961d695abbbee5029b86aee3e88037fafd08f4b55d78257b2"
             }
           }
         }
@@ -1814,6 +1810,12 @@
         "options": {
           "full_name": "virtualbox-extension-pack"
         }
+      },
+      "clickup": {
+        "version": "2.0.20",
+        "options": {
+          "full_name": "clickup"
+        }
       }
     },
     "mas": {
@@ -1835,7 +1837,7 @@
       },
       "Dato": {
         "id": "1470584107",
-        "version": "2.0.1"
+        "version": "2.0.2"
       },
       "Drafts": {
         "id": "1435957248",
@@ -1847,7 +1849,7 @@
       },
       "Keynote": {
         "id": "409183694",
-        "version": "10.3.5"
+        "version": "10.3.8"
       },
       "Magnet": {
         "id": "441258766",
@@ -1883,7 +1885,7 @@
       },
       "Slack": {
         "id": "803453959",
-        "version": "4.10.3"
+        "version": "4.11.3"
       },
       "Spark": {
         "id": "1176895641",
@@ -1894,9 +1896,9 @@
   "system": {
     "macos": {
       "catalina": {
-        "HOMEBREW_VERSION": "2.5.12-360-g8fe91aa",
+        "HOMEBREW_VERSION": "2.6.0-32-g41ea895",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "db30a3267f75d6e480fc05ce64580a85d4c4bc32",
+        "Homebrew/homebrew-core": "743e404a62f38cb3ab6f579e8c632ab76a0f0e21",
         "CLT": "12.2.0.0.1.1604628099",
         "Xcode": "12.0",
         "macOS": "10.15.7"

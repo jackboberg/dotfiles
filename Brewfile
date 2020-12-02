@@ -34,12 +34,12 @@ brew "bat"
 brew "bison"
 # Cross-platform make
 brew "cmake"
+# GNU internationalization (i18n) and localization (l10n) library
+brew "gettext"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Command-line DNS client
 brew "dog"
-# GNU internationalization (i18n) and localization (l10n) library
-brew "gettext"
 # Portable Foreign Function Interface library
 brew "libffi"
 # Manage compile and link flags for libraries
@@ -149,6 +149,7 @@ brew "zsh-completions"
 # management suite for dotfiles
 brew "thoughtbot/formulae/rcm"
 brew "xwmx/taps/nb"
+cask "clickup"
 cask "font-fira-code"
 cask "font-jetbrains-mono-nerd-font"
 cask "insomnia"
