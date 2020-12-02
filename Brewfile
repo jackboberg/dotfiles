@@ -149,6 +149,7 @@ brew "zsh-completions"
 # management suite for dotfiles
 brew "thoughtbot/formulae/rcm"
 brew "xwmx/taps/nb"
+cask "bartender"
 cask "clickup"
 cask "font-fira-code"
 cask "font-jetbrains-mono-nerd-font"

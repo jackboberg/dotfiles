@@ -1816,6 +1816,12 @@
         "options": {
           "full_name": "clickup"
         }
+      },
+      "bartender": {
+        "version": "3.1.25",
+        "options": {
+          "full_name": "bartender"
+        }
       }
     },
     "mas": {
@@ -1896,7 +1902,7 @@
   "system": {
     "macos": {
       "catalina": {
-        "HOMEBREW_VERSION": "2.6.0-32-g41ea895",
+        "HOMEBREW_VERSION": "2.6.0-34-g4980f33",
         "HOMEBREW_PREFIX": "/usr/local",
         "Homebrew/homebrew-core": "743e404a62f38cb3ab6f579e8c632ab76a0f0e21",
         "CLT": "12.2.0.0.1.1604628099",
