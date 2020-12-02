@@ -25,10 +25,7 @@ setup_rc () {
     dir=$(pwd)
     echo "DOTFILES_DIRS=\"${dir}\"" >> ./rcrc
 
-    # First we symbolically link just the `rcrc` file, then allow that
-    # configuration to drive the default linking strategy.
-    rcup -d $dir rcrc
-    rcup
+    env RCRC=${dir}/rcrc rcup
 }
 
 setup_secure_files () {
