@@ -67,6 +67,7 @@ setup_emacs () {
 
 setup_asdf () {
     echo "==> Setting up global tools…"
+    less asdf-plugins | xargs -n 1 asdf plugin add
     asdf install
 }
 
