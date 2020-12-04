@@ -57,9 +57,13 @@ setup_iterm () {
 setup_emacs () {
     echo "==> Setting up Emacs…"
     ghq get plexus/chemacs
-    ghq get hlissner/doom-emacs
-    ghq get syl20bnr/spacemacs
     $(ghq list -p plexus/chemacs)/install.sh
+
+    ghq get hlissner/doom-emacs
+    $(ghq list -p hlissner/doom-emacs)/bin/doom sync
+    $(ghq list -p hlissner/doom-emacs)/bin/doom doctor
+
+    ghq get syl20bnr/spacemacs
 }
 
 setup_asdf () {
