@@ -70,6 +70,10 @@ setup () {
 
 setup_colors
 
-if [[ "${0}" == "/bin/bash" ]] || [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
+if \
+  [ "$0##*/}" == "bash" ] || \
+  [ "${0}" == "/dev/fd/11" ] || \
+  [ "${#BASH_SOURCE[@]}" -eq 1 ]
+then
     install "$@"
 fi
