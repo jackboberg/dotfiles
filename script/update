@@ -15,5 +15,6 @@ if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
     script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
     # shellcheck source=./install
     source "${script_dir}/install"
+    setup_colors
     update "$@"
 fi
