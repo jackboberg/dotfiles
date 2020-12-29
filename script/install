@@ -5,8 +5,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-trap cleanup SIGINT SIGTERM ERR EXIT
-
 REPO="https://github.com/jackboberg/dotfiles.git"
 SRC_DIR="${HOME}/src/github.com/jackboberg"
 DOT_DIR="${SRC_DIR}/dotfiles"
@@ -16,11 +14,6 @@ install () {
     install_xcode
     get_dotfiles
     setup
-}
-
-cleanup () {
-    trap - SIGINT SIGTERM ERR EXIT
-    msg_info "==> Cleaning up…"
 }
 
 setup_colors () {
