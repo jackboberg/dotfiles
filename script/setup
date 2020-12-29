@@ -8,8 +8,8 @@ IFS=$'\n\t'
 setup () {
     cd "$(dirname "$0")/.."
     script/bootstrap
+    msg_header "==> script/setup…"
 
-    echo "==> script/setup…"
     setup_rc
     setup_secure_files
     setup_iterm
@@ -18,7 +18,7 @@ setup () {
 }
 
 setup_rc () {
-    echo "==> Setting up RC files…"
+    msg_info "==> Setting up RC files…"
     local dir
 
     # Set this repo as the source directory.
@@ -29,7 +29,7 @@ setup_rc () {
 }
 
 setup_secure_files () {
-    echo "==> Setting up secure files…"
+    msg_info "==> Setting up secure files…"
     local icloud_dir
     icloud_dir="${HOME}/Library/Mobile\ Documents/com\~apple\~CloudDocs"
 
@@ -41,7 +41,7 @@ setup_secure_files () {
 }
 
 setup_iterm () {
-    echo "==> Setting up iTerm2 preferences…"
+    msg_info "==> Setting up iTerm2 preferences…"
     local dir
     local plist
     plist="com.googlecode.iterm2.plist"
@@ -55,7 +55,7 @@ setup_iterm () {
 }
 
 setup_emacs () {
-    echo "==> Setting up Emacs…"
+    msg_info "==> Setting up Emacs…"
     ghq get plexus/chemacs
     $(ghq list -p plexus/chemacs)/install.sh
 
@@ -67,7 +67,7 @@ setup_emacs () {
 }
 
 setup_asdf () {
-    echo "==> Setting up global tools…"
+    msg_info "==> Setting up global tools…"
     less asdf-plugins | xargs -n 1 asdf plugin add
 
     ${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring
@@ -76,5 +76,9 @@ setup_asdf () {
 }
 
 if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
+    script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+    # shellcheck source=./install
+    source "${script_dir}/install"
+    setup_colors
     setup "$@"
 fi
