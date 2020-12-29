@@ -78,8 +78,6 @@ brew "gnu-sed"
 brew "gnupg"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
-# Add GitHub support to git on the command-line
-brew "hub"
 # Command-line benchmarking tool
 brew "hyperfine"
 # C/C++ and Java libraries for Unicode and globalization
@@ -122,6 +120,8 @@ brew "pre-commit"
 brew "re2c"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Experimental Rust compiler front-end for IDEs
+brew "rust-analyzer"
 # Fast, configurable, shell plugin manager
 brew "sheldon"
 # Static analysis and lint tool, for (ba)sh scripts
@@ -149,6 +149,7 @@ brew "zsh-completions"
 # management suite for dotfiles
 brew "thoughtbot/formulae/rcm"
 brew "xwmx/taps/nb"
+cask "1password-cli"
 cask "bartender"
 cask "clickup"
 cask "font-fira-code"
@@ -171,6 +172,7 @@ mas "Marked 2", id: 890031187
 mas "Numbers", id: 409203825
 mas "OmniFocus", id: 1346203938
 mas "OmniGraffle", id: 1142578753
+mas "OneTab", id: 1540160809
 mas "Pages", id: 409201541
 mas "Plash", id: 1494023538
 mas "Sequel Ace", id: 1518036000
