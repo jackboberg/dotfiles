@@ -27,8 +27,6 @@
   assume            = update-index --assume-unchanged
   unassume          = update-index --no-assume-unchanged
   assumed           = "!git ls-files -v | grep ^h | cut -c 3-"
-  issues            = browse -- issues
-  pr                = pull-request -b develop
   st                = status
   promote           = !$DOT/bin/git-promote
   wtf               = !$DOT/bin/git-wtf
@@ -36,9 +34,14 @@
   undo              = !$DOT/bin/git-undo
   ec                = config --global -e
   bs                = !git checkout $(git branch | cut -c 3- | fzy)
+  browse            = !gh repo view --web
+  pr                = !gh pr create --web
 
 [branch]
   autosetuprebase = always
+
+[pull]
+  rebase = true
 
 [push]
   default = simple
