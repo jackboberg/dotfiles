@@ -70,8 +70,6 @@ setup_asdf () {
     msg_info "==> Setting up global tools…"
     less asdf-plugins | xargs -n 1 asdf plugin add
 
-    ${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring
-
     asdf install
 }
 
