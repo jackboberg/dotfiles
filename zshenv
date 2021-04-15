@@ -21,3 +21,9 @@ export PKG_CONFIG_PATH=$PKG_LIBFFI:$PKG_ICU4C:$PKG_LIBEDIT:$PKG_LIBXML2:$PKG_OPE
 export EDITOR=emacs
 
 export FSEVENT_SLEEP="$HOME/.bin/fsevent_sleep"
+
+
+# Install Erlang without java (and deal with SSL)
+# https://github.com/kerl/kerl/issues/320
+export KERL_CONFIGURE_OPTIONS="--without-javac --with-ssl=`/usr/local/bin/brew --prefix openssl`"
+export CFLAGS="-O2 -g -fno-stack-check"
