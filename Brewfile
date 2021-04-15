@@ -75,7 +75,7 @@ brew "git-delta"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
 # GNU Pretty Good Privacy (PGP) package
-brew "gnupg"
+brew "gnupg", link: false
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Command-line benchmarking tool
@@ -149,15 +149,25 @@ brew "zsh-completions"
 # management suite for dotfiles
 brew "thoughtbot/formulae/rcm"
 brew "xwmx/taps/nb"
+# Command-line helper for the 1Password password manager
 cask "1password-cli"
+# Menu bar icon organizer
 cask "bartender"
+# Productivity platform for tasks, docs, goals, and chat
 cask "clickup"
 cask "font-fira-code"
 cask "font-jetbrains-mono-nerd-font"
+# Light, Electron-based Wrapper around GraphiQL
+cask "graphiql"
+# HTTP and GraphQL Client
 cask "insomnia"
+# Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
+# Development environment
 cask "vagrant"
+# Free and open-source hosted hypervisor for x86 virtualization
 cask "virtualbox"
+# AMD64/Intel64 and x86 virtualization
 cask "virtualbox-extension-pack"
 mas "1Password 7", id: 1333542190
 mas "Agenda", id: 1287445660
@@ -165,6 +175,7 @@ mas "Boop", id: 1518425043
 mas "DaisyDisk", id: 411643860
 mas "Dato", id: 1470584107
 mas "Drafts", id: 1435957248
+mas "Gifski", id: 1351639930
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
