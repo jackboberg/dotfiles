@@ -2,4 +2,4 @@ nodejs 14.16.1
 elixir 1.11.2-otp-23
 erlang 23.1.2
 rust stable
-ruby 2.7.1
+ruby 2.7.3
