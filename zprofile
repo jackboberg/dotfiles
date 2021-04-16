@@ -14,6 +14,10 @@ ASDF_BIN="${ASDF_DIR}/bin"
 ASDF_USER_SHIMS="${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
 PATH=$ASDF_USER_SHIMS:$ASDF_BIN:$PATH
 
+# elixir-ls
+ELIXIR_LS_PATH=$(ghq list -p elixir-lsp/elixir-ls)/release
+PATH=$PATH:$ELIXIR_LS_PATH
+
 # even more local bin directories
 LOCAL_BIN=./.bin:./bin:$HOME/.bin
 PATH=$LOCAL_BIN:$PATH

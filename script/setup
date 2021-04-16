@@ -63,6 +63,9 @@ setup_emacs () {
     $(ghq list -p hlissner/doom-emacs)/bin/doom sync
     $(ghq list -p hlissner/doom-emacs)/bin/doom doctor
 
+    # TODO auto installing LSP
+    # ELIXIR_LS_PATH=$(ghq list -p elixir-lsp/elixir-ls)/release
+
     ghq get syl20bnr/spacemacs
 }
 
