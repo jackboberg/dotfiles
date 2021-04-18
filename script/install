@@ -13,7 +13,7 @@ install () {
     msg_header "==> script/install…"
     install_xcode
     get_dotfiles
-    setup
+    do_setup
 }
 
 setup_colors () {
@@ -28,18 +28,22 @@ msg () {
     echo >&2 -e "${1-}"
 }
 
+msg_header () {
+    msg "${BLUE}${1-}${NOFORMAT}"
+}
+
 msg_info () {
     msg "${PURPLE}${1-}${NOFORMAT}"
 }
 
-msg_header () {
-    msg "${BLUE}${1-}${NOFORMAT}"
+fn_exists () {
+    declare -F $1 > /dev/null
 }
 
 install_xcode () {
     msg_info "==> Looking for Command Line Tools…"
     xcode-select --print-path >/dev/null 2>&1 || {
-        msg_info "==> Installing Command Line Tools…"
+        msg "==> Installing Command Line Tools…"
         xcode-select --install
     }
 }
@@ -47,7 +51,7 @@ install_xcode () {
 get_dotfiles () {
     msg_info "==> Getting dotfiles…"
     if [ -d "$DOT_DIR" ]; then
-        msg_info "==> $DOT_DIR exists…"
+        msg "==> $DOT_DIR exists…"
         exit 1
     fi
 
@@ -55,7 +59,7 @@ get_dotfiles () {
     git clone $REPO $DOT_DIR
 }
 
-setup () {
+do_setup () {
     msg_info "==> Setting up dotfiles…"
     cd $DOT_DIR
     script/setup
