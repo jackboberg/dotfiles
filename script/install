@@ -36,6 +36,22 @@ msg_info () {
     msg "${PURPLE}${1-}${NOFORMAT}"
 }
 
+affirm () {
+    if ! confirm "$@"; then exit 1; fi
+}
+
+confirm () {
+    local YN
+
+    read -e -r -p "$@ [Y/n] " YN
+
+    if [[ $YN == "y" || $YN == "Y" || $YN == "" ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 fn_exists () {
     declare -F $1 > /dev/null
 }
