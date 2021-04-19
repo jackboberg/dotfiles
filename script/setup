@@ -32,6 +32,8 @@ setup_rc () {
 
 setup_secure_files () {
     msg_info "==> Setting up secure files…"
+    affirm "Have you downloaded secure files from iCloud Drive?"
+
     local icloud_dir
     icloud_dir="${HOME}/Library/Mobile\ Documents/com\~apple\~CloudDocs"
 
