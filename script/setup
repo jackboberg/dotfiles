@@ -88,15 +88,24 @@ setup_iterm () {
 
 setup_emacs () {
     msg_info "==> Setting up Emacs…"
+    local work_dir
+
+    msg_info "==> Building elixir language server…"
+    work_dir=$(pwd)
+    ghq get elixir-lsp/elixir-ls
+    cd "$(ghq list -p elixir-lsp/elixir-ls)"
+    mix deps.get
+    mix compile
+    mix elixir_ls.release -o release
+    cd "${work_dir}"
+
+    msg_info "==> Setting up emacs variants…"
     ghq get plexus/chemacs
-    $(ghq list -p plexus/chemacs)/install.sh
+    "$(ghq list -p plexus/chemacs)"/install.sh
 
     ghq get hlissner/doom-emacs
-    $(ghq list -p hlissner/doom-emacs)/bin/doom sync
-    $(ghq list -p hlissner/doom-emacs)/bin/doom doctor
-
-    # TODO auto installing LSP
-    # ELIXIR_LS_PATH=$(ghq list -p elixir-lsp/elixir-ls)/release
+    "$(ghq list -p hlissner/doom-emacs)"/bin/doom sync
+    "$(ghq list -p hlissner/doom-emacs)"/bin/doom doctor
 
     ghq get syl20bnr/spacemacs
 }
