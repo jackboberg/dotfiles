@@ -1,43 +1,36 @@
 # @jackboberg has dotfiles
 
-# Prerequisites
+## install
+    
+    /usr/bin/env bash \
+        <(curl -fsSL https://raw.githubusercontent.com/jackboberg/dotfiles/latest/script/install)
 
-- [Homebrew: The Missing Package Manager for macOS (or Linux)](https://brew.sh/)
-- [x-motemen/ghq: Remote repository management made easy](https://github.com/x-motemen/ghq)
+This will clone this repo to `~/src/github.com/jackboberg` and execute [`script/setup`](script/setup). The path matches conventions from [`ghq`][ghq], which I use to manage all my local projects.
+
+### Next steps
+
+I keep a log of [install issues][install-issues] and potential improvements when
+I have the opportunity to run a _clean_ install.
+
+- 2021-04-17: iMac Pro, macOS 11.2.3
+- 2020-11-28: MacBook Pro, macOS 10.15.7
+
+## Tooling
+
+- [rossmacarthur/sheldon: A fast, configurable, shell plugin 
+- [Starship: Cross-Shell Prompt](https://starship.rs/)
+manager](https://github.com/rossmacarthur/sheldon)
 - [thoughtbot/rcm: rc file (dotfile) management](https://github.com/thoughtbot/rcm)
+- [hlissner/doom-emacs: An Emacs framework for the stubborn martian hacker](https://github.com/hlissner/doom-emacs)
+- [asdf - An extendable version manager](https://asdf-vm.com)
+- [x-motemen/ghq: Remote repository management made easy][ghq]
+- [Homebrew: The Missing Package Manager for macOS (or Linux)](https://brew.sh)
 
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    brew doctor
-    brew install ghq rcm
+## Amnesty
 
-# install
-    
-    GHQ_ROOT=~/src ghq get jackboberg/dotfiles
+While setting up a new computer, I decided to wipe and restart my dotfiles after
+years of accumulating cruft. I have moved all the legacy files to a `.dmz` and
+am rebuilding as I discover missing functionality.
 
-## rcm: manage symbolic links 
-
-    rcup -d ~/src/github.com/jackboberg/dotfiles rcrc && rcup
-    
-First we symbolically link just the `rcrc` file, then allow that configuration
-to drive the default linking strategy. 
-
-## Next steps
-
-    brew bundle --global
-    
-### Setup Emacs
-
-    ghq get plexus/chemacs
-    ghq get hlissner/doom-emacs
-    ghq get syl20bnr/spacemacs
-    cd $SRC/github.com/plexus/chemacs && ./install.sh
-    
-[chemacs](https://github.com/plexus/chemacs) allows me to toggle my Emacs
-configuration, currently [Doom](https://github.com/hlissner/doom-emacs).
-
-
-# AMNESTY
-
-While setting up a new iMac Pro, I decided to wipe and restart my dotfiles after
-7 years of accumulating cruft. I have moved all the existing files to a `.dmz`
-and am rebuilding as I discover missing functionality.
+[install-issues]: https://github.com/jackboberg/dotfiles/labels/install
+[ghq]: https://github.com/x-motemen/ghq
