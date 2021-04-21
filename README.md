@@ -17,9 +17,8 @@ I have the opportunity to run a _clean_ install.
 
 ## Tooling
 
-- [rossmacarthur/sheldon: A fast, configurable, shell plugin 
+- [rossmacarthur/sheldon: A fast, configurable, shell plugin manager](https://github.com/rossmacarthur/sheldon)
 - [Starship: Cross-Shell Prompt](https://starship.rs/)
-manager](https://github.com/rossmacarthur/sheldon)
 - [thoughtbot/rcm: rc file (dotfile) management](https://github.com/thoughtbot/rcm)
 - [hlissner/doom-emacs: An Emacs framework for the stubborn martian hacker](https://github.com/hlissner/doom-emacs)
 - [asdf - An extendable version manager](https://asdf-vm.com)
