@@ -60,13 +60,16 @@ setup_secure_files () {
     affirm "Have you downloaded secure files from iCloud Drive?"
 
     local icloud_dir
-    icloud_dir="${HOME}/Library/Mobile\ Documents/com\~apple\~CloudDocs"
+    icloud_dir="${HOME}/Library/Mobile\ Documents/com\~apple\~CloudDocs/dotfiles"
 
     # symbolically link private git config
-    ln -s "${icloud_dir}/gitconfig.local" ~/.gitconfig.local
+    ln -s "${icloud_dir}/gitconfig.local" "${HOME}/.gitconfig.local"
 
     # symbolically link private zsh config
-    ln -s "${icloud_dir}/rc.local" ~/.localrc
+    ln -s "${icloud_dir}/rc.local" "${HOME}/.localrc"
+
+    # import hosts
+    sudo hostile load "${icloud_dir}/hosts"
 }
 
 setup_iterm () {
