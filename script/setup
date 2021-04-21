@@ -5,6 +5,8 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+shell_bin="/usr/local/bin/zsh"
+
 setup () {
     cd "$(dirname "$0")/.."
     affirm "Have you authenticated with the App Store?"
@@ -13,6 +15,7 @@ setup () {
     msg_header "==> script/setup…"
 
     setup_rc
+    setup_shell
     setup_secure_files
     setup_iterm
     setup_emacs
@@ -28,6 +31,28 @@ setup_rc () {
     echo "DOTFILES_DIRS=\"${dir}\"" >> ./rcrc
 
     env RCRC=${dir}/rcrc rcup
+}
+
+setup_shell () {
+    msg_info "==> Setting up shell…"
+    local shells="/etc/shells"
+
+    if [ "$SHELL" = "$shell_bin" ]; then
+        msg_info "default shell configured ($shell_bin)"
+        return
+    fi
+
+    if [ ! -f $shell_bin ]; then
+        msg_error "$shell_bin does not exist!"
+        exit 1
+    fi
+
+    if ! file_contains $shells $shell_bin; then
+        echo $shell_bin >> sudo tee -a $shells > /dev/null
+    fi
+
+    chsh -s $shell_bin
+    msg_info "default shell configured ($shell_bin) ...restart required"
 }
 
 setup_secure_files () {

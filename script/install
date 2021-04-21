@@ -33,7 +33,11 @@ msg_header () {
 }
 
 msg_info () {
-    msg "${PURPLE}${1-}${NOFORMAT}"
+    msg "${YELLOW}${1-}${NOFORMAT}"
+}
+
+msg_error () {
+    msg "${RED}${1-}${NOFORMAT}"
 }
 
 affirm () {
@@ -54,6 +58,17 @@ confirm () {
 
 fn_exists () {
     declare -F $1 > /dev/null
+}
+
+file_contains () {
+    local file=$1
+    local search=$2
+
+    if grep -q $search $file; then
+        return 0
+    else
+        return 1
+    fi
 }
 
 install_xcode () {
