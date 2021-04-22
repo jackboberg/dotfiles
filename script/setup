@@ -14,23 +14,31 @@ setup () {
     script/bootstrap
     msg_header "==> script/setup…"
 
+    setup_secure_files
     setup_rc
     setup_shell
-    setup_secure_files
     setup_iterm
     setup_emacs
     setup_asdf
+    setup_hosts
+}
+
+setup_secure_files () {
+    msg_info "==> Setting up secure files…"
+    affirm "Have you downloaded secure files from iCloud Drive?"
+
+    local icloud_dir
+    icloud_dir="${HOME}/Library/Mobile Documents/com~apple~CloudDocs/dotfiles"
+    ln -s "${icloud_dir}" "${dot_dir}/local"
 }
 
 setup_rc () {
     msg_info "==> Setting up RC files…"
-    local dir
 
     # Set this repo as the source directory.
-    dir=$(pwd)
-    echo "DOTFILES_DIRS=\"${dir}\"" >> ./rcrc
+    echo "DOTFILES_DIRS=\"${dot_dir}\"" >> ./rcrc
 
-    env RCRC=${dir}/rcrc rcup
+    env RCRC="${dot_dir}/rcrc" rcup
 }
 
 setup_shell () {
@@ -53,23 +61,6 @@ setup_shell () {
 
     chsh -s $shell_bin
     msg_info "default shell configured ($shell_bin) ...restart required"
-}
-
-setup_secure_files () {
-    msg_info "==> Setting up secure files…"
-    affirm "Have you downloaded secure files from iCloud Drive?"
-
-    local icloud_dir
-    icloud_dir="${HOME}/Library/Mobile\ Documents/com\~apple\~CloudDocs/dotfiles"
-
-    # symbolically link private git config
-    ln -s "${icloud_dir}/gitconfig.local" "${HOME}/.gitconfig.local"
-
-    # symbolically link private zsh config
-    ln -s "${icloud_dir}/rc.local" "${HOME}/.localrc"
-
-    # import hosts
-    sudo hostile load "${icloud_dir}/hosts"
 }
 
 setup_iterm () {
@@ -117,8 +108,15 @@ setup_asdf () {
     asdf install
 }
 
+setup_hosts () {
+    msg_info "==> Setting up hosts…"
+
+    sudo hostile load "${HOME}/.local/hosts"
+}
+
 if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
     script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+    dot_dir=$(dirname "$script_dir")
     # shellcheck source=./install
     source "${script_dir}/install"
     setup_colors

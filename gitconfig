@@ -62,11 +62,11 @@
   protocol = https
 
 [init]
-  templateDir = /Users/jack/.git-template
+  templateDir = ~/.git-template
 
 [include]
   # keep your user name and 3rd-party config in a more private file
-  path = ~/.gitconfig.local
+  path = ~/.local/gitconfig
 
 [ghq]
   root = ~/src

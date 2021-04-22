@@ -25,7 +25,7 @@ compinit -C
 source <(sheldon source)
 
 # load local config
-[ -f ~/.localrc ] && . ~/.localrc
+[ -f ~/.local/zshrc ] && . ~/.local/zshrc
 
 eval "$(starship init zsh)"
 
