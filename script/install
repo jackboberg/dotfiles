@@ -96,11 +96,7 @@ do_setup () {
     script/setup
 }
 
-if \
-  [ "$0##*/}" == "bash" ] || \
-  [ "${0}" == "/dev/fd/11" ] || \
-  [ "${#BASH_SOURCE[@]}" -eq 1 ]
-then
+if ! (return 0 2>/dev/null); then
     setup_colors
     install "$@"
 fi
