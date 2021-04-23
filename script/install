@@ -8,8 +8,12 @@ IFS=$'\n\t'
 REPO="https://github.com/jackboberg/dotfiles.git"
 DOT_DIR="${HOME}/src/github.com/jackboberg/dotfiles"
 
+CONFIG_DIR=${XDG_CONFIG_HOME:-$HOME/.config}
+CONFIG_FILE="${CONFIG_DIR}/dotfiles.cfg"
+
 install () {
     msg_header "==> script/install…"
+    install_config
     install_xcode
     get_dotfiles
     do_setup
@@ -71,6 +75,28 @@ file_contains () {
     fi
 }
 
+config_get() {
+    local value
+    value=$(
+        (grep -E "^${1}=" -m 1 "${CONFIG_FILE}" 2>/dev/null || echo "VAR=__UNDEFINED__") \
+            | head -n 1 \
+            | cut -d '=' -f 2-)
+
+    if [ "${value}" = "__UNDEFINED__" ]; then
+        value="${2}"
+    fi
+    printf -- "%s" "${value}"
+}
+
+config_set() {
+    local key=$1
+    local value=$2
+
+    grep -q "^${key}" "${CONFIG_FILE}" && \
+        sed -i "" "s/^${key}=.*/${key}=${value}/" "${CONFIG_FILE}" \
+        || echo "${key}=${value}" >> "${CONFIG_FILE}"
+}
+
 require_env () {
     local var=$1
     local prompt=$2
@@ -88,6 +114,13 @@ require_env () {
 
     eval "${setter}"
     echo "$setter" >> "$env_path"
+}
+
+install_config () {
+    msg_info "==> Initializing config…"
+
+    mkdir -p "$(dirname "${CONFIG_FILE}")"
+    touch "${CONFIG_FILE}"
 }
 
 install_xcode () {
