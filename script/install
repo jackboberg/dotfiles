@@ -40,6 +40,10 @@ msg_info () {
     msg "${CYAN}${1-}${NOFORMAT}"
 }
 
+msg_warn () {
+    msg "${ORANGE}${1-}${NOFORMAT}"
+}
+
 msg_error () {
     msg "${RED}${1-}${NOFORMAT}"
 }
@@ -76,13 +80,16 @@ file_contains () {
 }
 
 config_get() {
+    local key=$1
+
     local value
     value=$(
-        (grep -E "^${1}=" -m 1 "${CONFIG_FILE}" 2>/dev/null || echo "VAR=__UNDEFINED__") \
+        (grep -E "^${key}=" -m 1 "${CONFIG_FILE}" 2>/dev/null || echo "VAR=__UNDEFINED__") \
             | head -n 1 \
             | cut -d '=' -f 2-)
 
     if [ "${value}" = "__UNDEFINED__" ]; then
+        # errors if no default provided
         value="${2}"
     fi
     printf -- "%s" "${value}"
@@ -95,6 +102,25 @@ config_set() {
     grep -q "^${key}" "${CONFIG_FILE}" && \
         sed -i "" "s/^${key}=.*/${key}=${value}/" "${CONFIG_FILE}" \
         || echo "${key}=${value}" >> "${CONFIG_FILE}"
+}
+
+configure () {
+    local key=$1
+    local prompt=$2
+    local default=$3
+    local current
+
+    current=$(config_get "${key}" "__UNDEFINED__")
+    if [ "${current}" != "__UNDEFINED__" ]; then return; fi
+
+    msg_warn "${prompt}"
+    read -e -r -p "[${default}]: "
+
+    if [[ $REPLY == "" ]]; then
+        config_set "${key}" "${default}"
+    else
+        config_set "${key}" "${REPLY}"
+    fi
 }
 
 require_env () {
