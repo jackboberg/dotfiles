@@ -9,9 +9,8 @@ shell_bin="/usr/local/bin/zsh"
 
 setup () {
     cd "$(dirname "$0")/.."
-    affirm "Have you authenticated with the App Store?"
 
-    script/bootstrap
+    bootstrap
     msg_header "==> script/setup…"
 
     setup_secure_files
@@ -117,8 +116,7 @@ setup_hosts () {
 if ! (return 0 2>/dev/null); then
     script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
     dot_dir=$(dirname "$script_dir")
-    # shellcheck source=./install
-    source "${script_dir}/install"
-    setup_colors
+    # shellcheck source=./bootstrap
+    source "${script_dir}/bootstrap"
     setup "$@"
 fi
