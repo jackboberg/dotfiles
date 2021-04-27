@@ -46,7 +46,7 @@ confirm () {
     local prompt=$1
     local YN
 
-    msg_warn "${prompt}"
+    msg_warn "\n${prompt}"
     read -e -r -p "[Y/n]: " YN
 
     if [[ $YN == "y" || $YN == "Y" || $YN == "" ]]; then
@@ -80,22 +80,48 @@ bootstrap () {
     bootstrap_colors
     msg_header "==> script/bootstrap…"
 
-    affirm "Have you authenticated with the App Store?"
 
     bootstrap_config
+    bootstrap_app_store
+    bootstrap_secure_dir
     bootstrap_xcode
     bootstrap_homebrew
 }
 
 bootstrap_config () {
+    if [ -f "${CONFIG_FILE}" ]; then return; fi
+
     msg_info "==> Initializing config…"
 
     mkdir -p "$(dirname "${CONFIG_FILE}")"
     touch "${CONFIG_FILE}"
+}
+
+bootstrap_app_store () {
+    local skip
+    skip=$(config_get skip_bootstrap_app_store 0)
+
+    if [ "${skip}" == "1" ]; then return; fi
+
+    affirm "Have you authenticated with the App Store?"
+    config_set skip_bootstrap_app_store 1
+}
+
+bootstrap_secure_dir () {
+    local skip
+    skip=$(config_get skip_bootstrap_secure_dir 0)
+
+    if [ "${skip}" == "1" ]; then return; fi
+
+    local dir
 
     configure secure_dir \
         "Where do you store secure files?" \
         "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/dotfiles"
+    dir=$(config_get secure_dir)
+
+    affirm "Have you downloaded secure files to ${dir}?"
+    config_set skip_bootstrap_secure_dir 1
 }
 
 # config
@@ -110,7 +136,7 @@ configure () {
     current=$(config_get "${key}" "__UNDEFINED__")
     if [ "${current}" != "__UNDEFINED__" ]; then return; fi
 
-    msg_warn "${prompt}"
+    msg_warn "\n${prompt}"
     read -e -r -p "[${default}]: "
 
     if [[ $REPLY == "" ]]; then
@@ -140,8 +166,12 @@ config_set() {
     local key=$1
     local value=$2
 
+    # sed complains about this regex delimiter when setting directories
+    # we just pipe that noise to /dev/null since it seems to work anyway
+    local re="s/^${key}=.*/${key}=${value}/"
+
     grep -q "^${key}" "${CONFIG_FILE}" && \
-        sed -i "" "s/^${key}=.*/${key}=${value}/" "${CONFIG_FILE}" \
+        sed -i "" "${re}" "${CONFIG_FILE}" 2>/dev/null \
         || echo "${key}=${value}" >> "${CONFIG_FILE}"
 }
 
