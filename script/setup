@@ -5,8 +5,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-shell_bin="/usr/local/bin/zsh"
-
 setup () {
     cd "$(dirname "$0")/.."
 
@@ -42,24 +40,26 @@ setup_rc () {
 
 setup_shell () {
     msg_info "==> Setting up shell…"
+    local shell_bin
+    shell_bin=$(config_get shell_bin)
     local shells="/etc/shells"
 
-    if [ "$SHELL" = "$shell_bin" ]; then
-        msg_info "default shell configured ($shell_bin)"
+    if [ "${SHELL}" = "${shell_bin}" ]; then
+        msg_info "default shell configured (${shell_bin})"
         return
     fi
 
-    if [ ! -f $shell_bin ]; then
-        msg_error "$shell_bin does not exist!"
+    if [ ! -f "${shell_bin}" ]; then
+        msg_error "${shell_bin} does not exist!"
         exit 1
     fi
 
-    if ! file_contains $shells $shell_bin; then
-        echo $shell_bin >> sudo tee -a $shells > /dev/null
+    if ! file_contains "${shells}" "${shell_bin}"; then
+        echo "${shell_bin}" >> sudo tee -a "${shells}" > /dev/null
     fi
 
-    chsh -s $shell_bin
-    msg_info "default shell configured ($shell_bin) ...restart required"
+    sudo chsh -s "${shell_bin}"
+    msg_info "default shell configured (${shell_bin}) ...restart required"
 }
 
 setup_iterm () {

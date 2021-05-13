@@ -80,10 +80,10 @@ bootstrap () {
     bootstrap_colors
     msg_header "==> script/bootstrap…"
 
-
     bootstrap_config
     bootstrap_app_store
     bootstrap_secure_dir
+    bootstrap_shell
     bootstrap_xcode
     bootstrap_homebrew
 }
@@ -122,6 +122,18 @@ bootstrap_secure_dir () {
 
     affirm "Have you downloaded secure files to ${dir}?"
     config_set skip_bootstrap_secure_dir 1
+}
+
+bootstrap_shell () {
+    local skip
+    skip=$(config_get skip_bootstrap_shell 0)
+
+    if [ "${skip}" == "1" ]; then return; fi
+
+    configure shell_bin \
+        "What is the path to your preferred shell?" \
+        "/usr/local/bin/zsh"
+    config_set skip_bootstrap_shell 1
 }
 
 # config
