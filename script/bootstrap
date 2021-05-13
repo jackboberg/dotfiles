@@ -78,7 +78,7 @@ file_contains () {
 bootstrap () {
     cd "$(dirname "$0")/.."
     bootstrap_colors
-    msg_header "==> script/bootstrap…"
+    msg_header "==> script/bootstrap"
 
     bootstrap_config
     bootstrap_app_store
@@ -91,7 +91,7 @@ bootstrap () {
 bootstrap_config () {
     if [ -f "${CONFIG_FILE}" ]; then return; fi
 
-    msg_info "==> Initializing config…"
+    msg_info "==> Initializing config"
 
     mkdir -p "$(dirname "${CONFIG_FILE}")"
     touch "${CONFIG_FILE}"
@@ -184,23 +184,23 @@ config_set() {
 }
 
 bootstrap_xcode () {
-    msg_info "==> Looking for Command Line Tools…"
+    msg_info "==> Looking for Command Line Tools"
     xcode-select --print-path >/dev/null 2>&1 || {
-        msg_info "==> Installing Command Line Tools…"
+        msg_info "==> Installing Command Line Tools"
         xcode-select --install
     }
 }
 
 bootstrap_homebrew () {
     if ! [ -x "$(command -v brew)" ]; then
-        msg_info "==> Installing Homebrew…"
+        msg_info "==> Installing Homebrew"
         /usr/bin/env bash -c \
             "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
     if [ -f "Brewfile" ] && [ "$(uname -s)" = "Darwin" ]; then
-        msg_info "==> Checking Homebrew dependencies…"
+        msg_info "==> Checking Homebrew dependencies"
         brew bundle check >/dev/null 2>&1  || {
-            msg_info "==> Installing Homebrew dependencies…"
+            msg_info "==> Installing Homebrew dependencies"
             brew bundle --no-upgrade
         }
     fi

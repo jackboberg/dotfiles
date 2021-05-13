@@ -9,7 +9,7 @@ setup () {
     cd "$(dirname "$0")/.."
 
     bootstrap
-    msg_header "==> script/setup…"
+    msg_header "==> script/setup"
 
     setup_secure_files
     setup_rc
@@ -30,7 +30,7 @@ setup_secure_files () {
 }
 
 setup_rc () {
-    msg_info "==> Setting up RC files…"
+    msg_info "==> Setting up RC files"
 
     # Set this repo as the source directory.
     echo "DOTFILES_DIRS=\"${dot_dir}\"" >> ./rcrc
@@ -39,7 +39,7 @@ setup_rc () {
 }
 
 setup_shell () {
-    msg_info "==> Setting up shell…"
+    msg_info "==> Setting up shell"
     local shell_bin
     shell_bin=$(config_get shell_bin)
     local shells="/etc/shells"
@@ -63,7 +63,7 @@ setup_shell () {
 }
 
 setup_iterm () {
-    msg_info "==> Setting up iTerm2 preferences…"
+    msg_info "==> Setting up iTerm2 preferences"
     local dir
     local plist
     plist="com.googlecode.iterm2.plist"
@@ -77,10 +77,10 @@ setup_iterm () {
 }
 
 setup_emacs () {
-    msg_info "==> Setting up Emacs…"
+    msg_info "==> Setting up Emacs"
     local work_dir
 
-    msg_info "==> Building elixir language server…"
+    msg_info "==> Building elixir language server"
     work_dir=$(pwd)
     ghq get elixir-lsp/elixir-ls
     cd "$(ghq list -p elixir-lsp/elixir-ls)"
@@ -89,7 +89,7 @@ setup_emacs () {
     mix elixir_ls.release -o release
     cd "${work_dir}"
 
-    msg_info "==> Setting up emacs variants…"
+    msg_info "==> Setting up emacs variants"
     ghq get plexus/chemacs
     "$(ghq list -p plexus/chemacs)"/install.sh
 
@@ -101,14 +101,14 @@ setup_emacs () {
 }
 
 setup_asdf () {
-    msg_info "==> Setting up global tools…"
+    msg_info "==> Setting up global tools"
     less asdf-plugins | xargs -n 1 asdf plugin add
 
     asdf install
 }
 
 setup_hosts () {
-    msg_info "==> Setting up hosts…"
+    msg_info "==> Setting up hosts"
 
     sudo hostile load "${HOME}/.local/hosts"
 }
