@@ -166,12 +166,8 @@ config_set() {
     local key=$1
     local value=$2
 
-    # sed complains about this regex delimiter when setting directories
-    # we just pipe that noise to /dev/null since it seems to work anyway
-    local re="s/^${key}=.*/${key}=${value}/"
-
     grep -q "^${key}" "${CONFIG_FILE}" && \
-        sed -i "" "${re}" "${CONFIG_FILE}" 2>/dev/null \
+        sed -i "" "s'^${key}=.*'${key}=${value}'" "${CONFIG_FILE}" \
         || echo "${key}=${value}" >> "${CONFIG_FILE}"
 }
 
