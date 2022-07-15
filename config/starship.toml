@@ -1,4 +1,20 @@
-[character]
-success_symbol = "[➜](bold green) "
-error_symbol = "[✗](bold red) "
-vicmd_symbol = "[V](bold green) "
+format = """
+[┌──────────────────────────────────────────────────────────────────────────────](bold bright-blue)
+[│](bold bright-blue) \
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration
+[└─$jobs$character](bold bright-blue)"""
+
+[jobs]
+disabled = false
+symbol = "+"
+threshold = 1
+format = "[|$symbol$number|─](bold bright-blue)"
+
+[git_branch]
+style = "bold green"
