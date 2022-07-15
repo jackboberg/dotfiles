@@ -58,6 +58,7 @@ config/sensitive.yml
 # user specific
 .jack
 .local
+.gitmessage
 
 tsconfig.json
 TODO.md
