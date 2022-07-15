@@ -2,7 +2,7 @@ export SRC=$(/usr/local/bin/ghq root)
 export DOT=${(%):-%d}
 
 export NODEJS_CHECK_SIGNATURES=no
-export ASDF_DIR=$(/usr/local/bin/brew --prefix asdf)
+export ASDF_DIR=$(/usr/local/bin/brew --prefix asdf)/libexec
 
 export ENHANCD_COMMAND=c
 

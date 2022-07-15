@@ -16,10 +16,10 @@ gist = "shogogg/86f13a0aff12b9a31efb083946a500cb"
 [plugins.enhancd]
 github = "b4b4r07/enhancd"
 
-[plugins.asdf]
-local = "/usr/local/opt/asdf/lib"
-use = ["asdf.sh"]
-apply = ["source"]
+# [plugins.asdf]
+# local = "/usr/local/opt/asdf/libexec"
+# use = ["asdf.sh"]
+# apply = ["source"]
 
 [plugins.docker]
 github = "robbyrussell/oh-my-zsh"
