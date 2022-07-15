@@ -1,15 +1,25 @@
+tap "d12frosted/emacs-plus"
+tap "eugenmayer/dockersync"
 tap "github/gh"
+tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "railwaycat/emacsmacport"
+tap "superfly/tap"
 tap "thoughtbot/formulae"
+tap "wix/brew"
 tap "xwmx/taps"
+# Run your GitHub Actions locally 🚀
+brew "act"
 # CLI tool for working with Architecture Decision Records
 brew "adr-tools"
-# Automatic configure script builder
-brew "autoconf"
+# Image manipulation library
+brew "jpeg"
+# Library for manipulating PNG images
+brew "libpng"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # GNU File, Shell, and Text utilities
@@ -18,34 +28,44 @@ brew "coreutils"
 brew "libtool"
 # YAML Parser
 brew "libyaml"
-# Library for command-line editing
-brew "readline"
 # ODBC 3 connectivity for UNIX
 brew "unixodbc"
 # Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
 # Spell checker with better logic than ispell
 brew "aspell"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Parser generator
 brew "bison"
-# Cross-platform make
-brew "cmake"
+# C/C++ and Java libraries for Unicode and globalization
+brew "icu4c"
+# Software library to render fonts
+brew "freetype"
+# XML-based font configuration API for X Windows
+brew "fontconfig"
 # GNU internationalization (i18n) and localization (l10n) library
 brew "gettext"
+# Portable Foreign Function Interface library
+brew "libffi"
+# Core application library for C
+brew "glib"
+# Manage compile and link flags for libraries
+brew "pkg-config"
+# Cross-platform make
+brew "cmake"
+# Open source suite of directory software
+brew "openldap"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Command-line DNS client
 brew "dog"
-# Portable Foreign Function Interface library
-brew "libffi"
-# Manage compile and link flags for libraries
-brew "pkg-config"
-# GNU Emacs text editor
-brew "emacs", restart_service: true
+# More intuitive version of du in rust
+brew "dust"
 # Run arbitrary commands when files change
 brew "entr"
 # Modern replacement for 'ls'
@@ -54,18 +74,12 @@ brew "exa"
 brew "exercism"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
-# Library for manipulating PNG images
-brew "libpng"
-# Software library to render fonts
-brew "freetype"
-# XML-based font configuration API for X Windows
-brew "fontconfig"
+# Collection of reusable C++ library artifacts developed at Facebook
+brew "folly"
 # Fast, simple fuzzy text selector with an advanced scoring algorithm
 brew "fzy"
 # GitHub command-line tool
 brew "gh"
-# Image manipulation library
-brew "jpeg"
 # Remote repository management made easy
 brew "ghq"
 # Distributed revision control system
@@ -74,14 +88,16 @@ brew "git"
 brew "git-delta"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Command-line benchmarking tool
 brew "hyperfine"
-# C/C++ and Java libraries for Unicode and globalization
-brew "icu4c"
+# Database of common MIME types
+brew "shared-mime-info"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
 # Utility to optimize JPEG files
@@ -94,8 +110,6 @@ brew "krb5"
 brew "libedit"
 # Conversion library
 brew "libiconv"
-# GNOME XML library
-brew "libxml2"
 # C XSLT library for GNOME
 brew "libxslt"
 # C library for reading, creating, and modifying zip archives
@@ -106,6 +120,18 @@ brew "markdown"
 brew "mas"
 # Remote terminal application
 brew "mosh"
+# Open source relational database management system
+brew "mysql"
+# Generic syntax highlighter
+brew "pygments"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Text interface for Git repositories
+brew "tig"
+# Command-line and local web note‑taking, bookmarking, and archiving
+brew "nb"
+# Modern shell for the GitHub era
+brew "nushell"
 # PNG file optimizer
 brew "optipng"
 # Pinentry for GPG on Mac
@@ -118,8 +144,8 @@ brew "postgresql"
 brew "pre-commit"
 # Generate C-based recognizers from regular expressions
 brew "re2c"
-# Search tool like grep and The Silver Searcher
-brew "ripgrep"
+# Utility that provides fast incremental file transfer
+brew "rsync"
 # Experimental Rust compiler front-end for IDEs
 brew "rust-analyzer"
 # Fast, configurable, shell plugin manager
@@ -128,40 +154,62 @@ brew "sheldon"
 brew "shellcheck"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Very fast implementation of tldr in Rust
+brew "tealdeer"
 # Code-search similar to ack
 brew "the_silver_searcher"
-# Simplified and community-driven man pages
-brew "tldr"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Extraction utility for .zip compressed archives
 brew "unzip"
+# Watch files and take action when they change
+brew "watchman"
+# Internet file retriever
+brew "wget"
 # Homebrew, but with Docker images
 brew "whalebrew"
-# Cross-platform C++ GUI toolkit (wxWidgets for macOS)
-brew "wxmac"
+# Cross-platform C++ GUI toolkit
+brew "wxwidgets"
 # General-purpose lossless data-compression library
 brew "zlib"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Additional completion definitions for zsh
 brew "zsh-completions"
+brew "d12frosted/emacs-plus/emacs-plus@28", args: ["with-imagemagick", "with-native-comp", "with-nobu417-big-sur-icon"]
+# Everything you need to get started with Heroku
+brew "heroku/brew/heroku"
+brew "superfly/tap/flyctl"
 # management suite for dotfiles
 brew "thoughtbot/formulae/rcm"
-brew "xwmx/taps/nb"
+# Apple simulator utilities
+brew "wix/brew/applesimutils"
 # Command-line helper for the 1Password password manager
 cask "1password-cli"
+# Data backup and storage service
+cask "backblaze"
 # Menu bar icon organizer
 cask "bartender"
+# Web browser focusing on privacy
+cask "brave-browser"
+# Hard disk backup and cloning utility
+cask "carbon-copy-cloner"
 # Productivity platform for tasks, docs, goals, and chat
 cask "clickup"
 # API documentation browser and code snippet manager
 cask "dash"
+# Voice and text chat software
+cask "discord"
 # App to build and share containerized applications and microservices
 cask "docker"
+# VPN client for secure internet access and private browsing
+cask "expressvpn"
 # Web browser
 cask "firefox"
 cask "font-fira-code"
+cask "font-fira-code-nerd-font"
+cask "font-inconsolata"
+cask "font-inconsolata-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
 # Light, Electron-based Wrapper around GraphiQL
 cask "graphiql"
@@ -169,14 +217,32 @@ cask "graphiql"
 cask "insomnia"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
+# End-to-end encryption software
+cask "keybase"
+# GPU-based terminal emulator
+cask "kitty"
+# Online collaborative whiteboard platform
+cask "miro"
+# Free and open-source RSS reader
+cask "netnewswire"
+# Reverse proxy, secure introspectable tunnels to localhost
+cask "ngrok"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
+# Remote pair programming
+cask "pop"
 # GUI client for PostgreSQL databases
 cask "postico"
+# Emoji picker optimized for blind people
+cask "rocket"
 # Development environment
 cask "vagrant"
-# Free and open-source hosted hypervisor for x86 virtualization
+# Virtualizer for x86 hardware
 cask "virtualbox"
-# AMD64/Intel64 and x86 virtualization
+# Extend the functionality of VirtualBox
 cask "virtualbox-extension-pack"
+# Open-source code editor
+cask "visual-studio-code"
 # Video communication and virtual meeting platform
 cask "zoom"
 mas "1Password 7", id: 1333542190
@@ -188,8 +254,10 @@ mas "Drafts", id: 1435957248
 mas "Gifski", id: 1351639930
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
+mas "Lungo", id: 1263070803
 mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
+mas "Microsoft Outlook", id: 985367838
 mas "Numbers", id: 409203825
 mas "OmniFocus", id: 1346203938
 mas "OmniGraffle", id: 1142578753
@@ -199,3 +267,5 @@ mas "Plash", id: 1494023538
 mas "Sequel Ace", id: 1518036000
 mas "Slack", id: 803453959
 mas "Spark", id: 1176895641
+mas "Super Agent", id: 1568262835
+mas "Xcode", id: 497799835
