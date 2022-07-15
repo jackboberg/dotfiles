@@ -48,3 +48,11 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
+
+;; [leafOfTree/svelte-mode: Emacs major mode for Svelte.](https://github.com/leafOfTree/svelte-mode)
+(package! svelte-mode
+ :recipe (:host github :repo "leafOfTree/svelte-mode"))
+
+;; [defunkt/coffee-mode: Emacs Major Mode for CoffeeScript](https://github.com/defunkt/coffee-mode)
+(package! coffee-mode
+  :recipe (:host github :repo "defunkt/coffee-mode"))
