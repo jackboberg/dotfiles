@@ -109,7 +109,7 @@ setup_asdf () {
 setup_hosts () {
     msg_info "==> Setting up hosts"
 
-    sudo hostile load "${HOME}/.local/hosts"
+    sudo hostile load "$(config_get secure_dir)/hosts"
 }
 
 if ! (return 0 2>/dev/null); then
