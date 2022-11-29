@@ -1,6 +1,6 @@
 tap "d12frosted/emacs-plus"
-tap "eugenmayer/dockersync"
 tap "github/gh"
+tap "go-task/tap"
 tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -8,6 +8,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "railwaycat/emacsmacport"
+tap "supabase/tap"
 tap "superfly/tap"
 tap "thoughtbot/formulae"
 tap "wix/brew"
@@ -17,7 +18,7 @@ brew "act"
 # CLI tool for working with Architecture Decision Records
 brew "adr-tools"
 # Image manipulation library
-brew "jpeg"
+brew "jpeg", link: true
 # Library for manipulating PNG images
 brew "libpng"
 # Tool for generating GNU Standards-compliant Makefiles
@@ -122,14 +123,6 @@ brew "mas"
 brew "mosh"
 # Open source relational database management system
 brew "mysql"
-# Generic syntax highlighter
-brew "pygments"
-# Search tool like grep and The Silver Searcher
-brew "ripgrep"
-# Text interface for Git repositories
-brew "tig"
-# Command-line and local web note‑taking, bookmarking, and archiving
-brew "nb"
 # Modern shell for the GitHub era
 brew "nushell"
 # PNG file optimizer
@@ -139,11 +132,15 @@ brew "pinentry-mac"
 # PNG image optimizing utility
 brew "pngquant"
 # Object-relational database system
-brew "postgresql"
+brew "postgresql@14"
 # Framework for managing multi-language pre-commit hooks
 brew "pre-commit"
+# Generic syntax highlighter
+brew "pygments"
 # Generate C-based recognizers from regular expressions
 brew "re2c"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # Utility that provides fast incremental file transfer
 brew "rsync"
 # Experimental Rust compiler front-end for IDEs
@@ -158,6 +155,8 @@ brew "starship"
 brew "tealdeer"
 # Code-search similar to ack
 brew "the_silver_searcher"
+# Text interface for Git repositories
+brew "tig"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Extraction utility for .zip compressed archives
@@ -177,13 +176,18 @@ brew "zsh"
 # Additional completion definitions for zsh
 brew "zsh-completions"
 brew "d12frosted/emacs-plus/emacs-plus@28", args: ["with-imagemagick", "with-native-comp", "with-nobu417-big-sur-icon"]
+# Task runner / simpler Make alternative written in Go
+brew "go-task/tap/go-task"
 # Everything you need to get started with Heroku
 brew "heroku/brew/heroku"
+# Supabase CLI
+brew "supabase/tap/supabase"
 brew "superfly/tap/flyctl"
 # management suite for dotfiles
 brew "thoughtbot/formulae/rcm"
 # Apple simulator utilities
 brew "wix/brew/applesimutils"
+brew "xwmx/taps/nb"
 # Command-line helper for the 1Password password manager
 cask "1password-cli"
 # Data backup and storage service
@@ -206,10 +210,13 @@ cask "docker"
 cask "expressvpn"
 # Web browser
 cask "firefox"
+# Free monospaced font with programming ligatures
 cask "font-fira-code"
+# Developer targeted fonts with a high number of glyphs
 cask "font-fira-code-nerd-font"
 cask "font-inconsolata"
 cask "font-inconsolata-nerd-font"
+# Developer targeted fonts with a high number of glyphs
 cask "font-jetbrains-mono-nerd-font"
 # Light, Electron-based Wrapper around GraphiQL
 cask "graphiql"
@@ -221,6 +228,8 @@ cask "iterm2"
 cask "keybase"
 # GPU-based terminal emulator
 cask "kitty"
+# Productivity tool
+cask "launchbar"
 # Online collaborative whiteboard platform
 cask "miro"
 # Free and open-source RSS reader
@@ -248,10 +257,13 @@ cask "zoom"
 mas "1Password 7", id: 1333542190
 mas "Agenda", id: 1287445660
 mas "Boop", id: 1518425043
+mas "Castaways", id: 1474344996
+mas "Cat Quest II", id: 1466977536
 mas "DaisyDisk", id: 411643860
 mas "Dato", id: 1470584107
 mas "Drafts", id: 1435957248
 mas "Gifski", id: 1351639930
+mas "HP Smart", id: 1474276998
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Lungo", id: 1263070803
@@ -268,4 +280,5 @@ mas "Sequel Ace", id: 1518036000
 mas "Slack", id: 803453959
 mas "Spark", id: 1176895641
 mas "Super Agent", id: 1568262835
+mas "WhatsApp", id: 1147396723
 mas "Xcode", id: 497799835
