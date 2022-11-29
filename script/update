@@ -6,15 +6,13 @@ set -euo pipefail
 IFS=$'\n\t'
 
 update () {
-    cd "$(dirname "$0")/.."
-    script/bootstrap
-    header "==> script/update…"
+    bootstrap
+    msg_header "==> script/update…"
 }
 
-if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
+if ! (return 0 2>/dev/null); then
     script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
-    # shellcheck source=./install
-    source "${script_dir}/install"
-    setup_colors
+    # shellcheck source=./bootstrap
+    source "${script_dir}/bootstrap"
     update "$@"
 fi
