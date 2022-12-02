@@ -1,8 +1,8 @@
 # modify PATH here
 # https://unix.stackexchange.com/questions/22979/path-helper-and-zsh
 
-# homebrew sbin
-PATH=$PATH:/usr/local/sbin
+# Set PATH, MANPATH, etc., for Homebrew.
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # DOOM!
 DOOM_BIN=$(ghq list -p doomemacs/doomemacs)/bin
