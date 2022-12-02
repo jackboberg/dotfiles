@@ -22,7 +22,7 @@ for dump in ~/.zcompdump(N.mh+24); do
 done
 compinit -C
 
-source <(sheldon source)
+eval "$(sheldon source)"
 
 # load local config
 [ -f ~/.local/zshrc ] && . ~/.local/zshrc
