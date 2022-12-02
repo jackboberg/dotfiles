@@ -71,3 +71,6 @@
 
 [ghq]
   root = ~/src
+
+[gpg]
+  format = ssh
