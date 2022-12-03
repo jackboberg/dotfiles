@@ -2,6 +2,8 @@ tap "d12frosted/emacs-plus"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
+# Extendable version manager with support for Ruby, Node.js, Erlang & more
+brew "asdf"
 # Cross-platform make
 brew "cmake"
 # Modern replacement for 'ls'

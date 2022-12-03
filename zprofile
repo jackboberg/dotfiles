@@ -8,12 +8,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 DOOM_BIN=$(ghq list -p doomemacs/doomemacs)/bin
 PATH=$PATH:$DOOM_BIN
 
-# asdf
-# instead of sourcing `$(brew --prefix asdf)/asdf.sh`, which always prepends
-ASDF_BIN="${ASDF_DIR}/bin"
-ASDF_USER_SHIMS="${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
-PATH=$ASDF_USER_SHIMS:$ASDF_BIN:$PATH
-
 # elixir-ls
 ELIXIR_LS_PATH=$(ghq list -p elixir-lsp/elixir-ls)/release
 PATH=$PATH:$ELIXIR_LS_PATH

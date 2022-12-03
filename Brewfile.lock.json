@@ -11,7 +11,7 @@
         "revision": "d13469e12823232c5ee8293552068ddfd83da707"
       },
       "homebrew/core": {
-        "revision": "661de5f8a542c80ad1670004b482284e662f6e3a"
+        "revision": "5b91193e1196e8d3a5cef781250e329b05ee8c59"
       }
     },
     "brew": {
@@ -520,6 +520,20 @@
             "with-nobu417-big-sur-icon"
           ]
         }
+      },
+      "asdf": {
+        "version": "0.10.2",
+        "bottle": {
+          "rebuild": 1,
+          "root_url": "https://ghcr.io/v2/homebrew/core",
+          "files": {
+            "all": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/asdf/blobs/sha256:2098bd4ff1da95064d7d112e8287532c077b1e1bda0dcb91fd977f7bac65ba5e",
+              "sha256": "2098bd4ff1da95064d7d112e8287532c077b1e1bda0dcb91fd977f7bac65ba5e"
+            }
+          }
+        }
       }
     }
   },
@@ -528,7 +542,7 @@
       "ventura": {
         "HOMEBREW_VERSION": "3.6.13",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "661de5f8a542c80ad1670004b482284e662f6e3a",
+        "Homebrew/homebrew-core": "5b91193e1196e8d3a5cef781250e329b05ee8c59",
         "CLT": "14.1.0.0.1.1666437224",
         "Xcode": "14.1",
         "macOS": "13.0.1"
