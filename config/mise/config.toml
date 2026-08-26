@@ -1,0 +1,23 @@
+[tools]
+cosign = "latest"
+deno = "latest"
+hk = "latest"
+pkl = "latest"
+slsa-verifier = "latest"
+node = "latest"
+ruby = "latest"
+
+"gem:keycutter" = "latest"
+"gem:pry" = "latest"
+"gem:rubocop" = "latest"
+"gem:rubocop-rails" = "latest"
+"gem:ruby-lsp" = "latest"
+"gem:solargraph" = "latest"
+
+"npm:eslint" = "latest"
+"npm:hostile" = "latest"
+"npm:jshint" = "latest"
+"npm:n_" = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["ruby"]

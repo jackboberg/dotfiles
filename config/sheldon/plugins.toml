@@ -37,12 +37,6 @@ gist = "shogogg/86f13a0aff12b9a31efb083946a500cb"
 [plugins.enhancd]
 github = "b4b4r07/enhancd"
 
-# TODO: make this arch agnostic
-[plugins.asdf]
-local = "/opt/homebrew/opt/asdf/libexec"
-use = ["asdf.sh"]
-apply = ["source"]
-
 [plugins.docker]
 github = "robbyrussell/oh-my-zsh"
 dir = "plugins/{{ name }}"
@@ -52,6 +46,9 @@ apply = ["fpath"]
 github = "robbyrussell/oh-my-zsh"
 dir = "plugins/{{ name }}"
 apply = ["source", "fpath"]
+
+[plugins.mise]
+inline = 'eval "$(mise activate zsh)"'
 
 # update completions
 [plugins.compinit]
