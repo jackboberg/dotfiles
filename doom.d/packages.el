@@ -52,8 +52,12 @@
 
 ;; [leafOfTree/svelte-mode: Emacs major mode for Svelte.](https://github.com/leafOfTree/svelte-mode)
 (package! svelte-mode
- :recipe (:host github :repo "leafOfTree/svelte-mode"))
+  :recipe (:host github :repo "leafOfTree/svelte-mode"))
 
 ;; [defunkt/coffee-mode: Emacs Major Mode for CoffeeScript](https://github.com/defunkt/coffee-mode)
 (package! coffee-mode
   :recipe (:host github :repo "defunkt/coffee-mode"))
+
+;; [catppuccin/emacs: 🍄 Soothing pastel theme for Emacs](https://github.com/catppuccin/emacs)
+;; [Catppuccin](https://catppuccin.com/)
+(package! catppuccin-theme)
