@@ -1,0 +1,5 @@
+# Zed generated data
+.tmp*
+conversations/
+embeddings/
+prompts/prompts-library-db.0.mdb/

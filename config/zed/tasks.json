@@ -1,0 +1,38 @@
+[
+  {
+    "label": "deno-test",
+    "command": "deno test -A --filter '/^$ZED_CUSTOM_DENO_TEST_NAME$/' $ZED_FILE && sleep 2",
+    "hide": "on_success",
+    "use_new_terminal": false,
+    "tags": ["js-test"],
+  },
+  {
+    "label": "rspec-verify",
+    "command": "bin/rspec $ZED_RELATIVE_FILE:$ZED_ROW && sleep 1",
+    // "args": ["$ZED_RELATIVE_FILE:$ZED_ROW", "&&", "sleep 1"],
+    "hide": "on_success",
+    "use_new_terminal": true,
+    "tags": ["ruby-test"],
+  },
+  {
+    "label": "git ui",
+    "command": "gitu",
+    "hide": "on_success",
+    "use_new_terminal": true,
+  },
+  {
+    "label": "opencode",
+    "command": "opencode --continue",
+    "hide": "on_success",
+    "use_new_terminal": false,
+    "show_summary": false,
+    "show_command": false,
+  },
+  {
+    "label": "Television File Finder",
+    "command": "zed \"$(tv files)\"",
+    "hide": "always",
+    "allow_concurrent_runs": true,
+    "use_new_terminal": true,
+  },
+]
