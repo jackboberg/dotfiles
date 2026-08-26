@@ -7,3 +7,9 @@ bundle/cache
 
 # symlink to private files
 local
+
+# television generated cable channels
+config/television/cable/
+
+# doom generated customization file
+doom.d/custom.el

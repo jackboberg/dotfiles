@@ -1,3 +1,24 @@
+# `sheldon` configuration file
+# ----------------------------
+#
+# You can modify this file directly or you can use one of the following
+# `sheldon` commands which are provided to assist in editing the config file:
+#
+# - `sheldon add` to add a new plugin to the config file
+# - `sheldon edit` to open up the config file in the default editor
+# - `sheldon remove` to remove a plugin from the config file
+#
+# See the documentation for more https://github.com/rossmacarthur/sheldon#readme
+
+shell = "zsh"
+
+[plugins]
+
+# For example:
+#
+# [plugins.base16]
+# github = "chriskempson/base16-shell"
+
 [plugins.zsh-async]
 github = "mafredri/zsh-async"
 
@@ -16,11 +37,6 @@ gist = "shogogg/86f13a0aff12b9a31efb083946a500cb"
 [plugins.enhancd]
 github = "b4b4r07/enhancd"
 
-# [plugins.asdf]
-# local = "/usr/local/opt/asdf/libexec"
-# use = ["asdf.sh"]
-# apply = ["source"]
-
 [plugins.docker]
 github = "robbyrussell/oh-my-zsh"
 dir = "plugins/{{ name }}"
@@ -31,6 +47,9 @@ github = "robbyrussell/oh-my-zsh"
 dir = "plugins/{{ name }}"
 apply = ["source", "fpath"]
 
+[plugins.mise]
+inline = 'eval "$(mise activate zsh)"'
+
 # update completions
 [plugins.compinit]
 inline = "compinit"
@@ -39,8 +58,9 @@ inline = "compinit"
 [plugins.dotfiles]
 local = "~/.zsh"
 
+# TODO: make this arch agnostic
 [plugins.brew-completions]
-local = "/usr/local/etc/bash_completion.d"
+local = "/opt/homebrew/etc/bash_completion.d"
 apply = ["fpath"]
 
 # [plugins.rust]

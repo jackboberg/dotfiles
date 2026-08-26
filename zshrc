@@ -12,17 +12,13 @@ bindkey -v
 zstyle :compinstall filename '/Users/jack/.zshrc'
 # End of lines added by compinstall
 
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-fi
-
 autoload -Uz compinit
 for dump in ~/.zcompdump(N.mh+24); do
   compinit
 done
 compinit -C
 
-source <(sheldon source)
+eval "$(sheldon source)"
 
 # load local config
 [ -f ~/.local/zshrc ] && . ~/.local/zshrc

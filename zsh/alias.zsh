@@ -1,8 +1,8 @@
 alias e='emacs -nw'
 
 # exa
-alias l="exa -l"
-alias ll="exa -la"
+alias l="eza -l"
+alias ll="eza -la"
 
 # rails env
 alias -g RED='RAILS_ENV=development'

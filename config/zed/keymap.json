@@ -1,0 +1,83 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "(!Editor && !Terminal) || VimControl",
+    "bindings": {
+      // "space space": "file_finder::Toggle",
+      "space space": [
+        // Or `ctrl-p`
+        "task::Spawn",
+        { "task_name": "Television File Finder", "reveal_target": "center" },
+      ],
+      "space /": "pane::DeploySearch",
+      "space q q": "zed::Quit",
+      "escape escape": "workspace::CloseAllDocks",
+      // Buffer
+      "space b b": "tab_switcher::ToggleAll",
+      "space b k": "pane::CloseActiveItem",
+      "space b K": "pane::CloseCleanItems",
+      "space b l": "pane::AlternateFile",
+      // File
+      "space f y": "workspace::CopyRelativePath",
+      "space f Y": "workspace::CopyPath",
+      // Git
+      "space g b": "git::Blame",
+      "space g g": [
+        "task::Spawn",
+        { "task_name": "git ui", "reveal_target": "center" },
+      ],
+      // Open
+      "space o c": [
+        "task::Spawn",
+        { "task_name": "opencode", "reveal_target": "center" },
+      ],
+      "space o t": "terminal_panel::Toggle",
+      "space o p": "pane::RevealInProjectPanel",
+      // editor::OpenGitBlameCommit
+      // Project
+      "space p a": "workspace::Open",
+      "space p p": "projects::OpenRecent",
+      "space p s": "workspace::SaveAll",
+      // Toggle
+      "space t l": "editor::ToggleRelativeLineNumbers",
+      "space t h": "workspace::ToggleLeftDock",
+      // Window
+      "space w h": "pane::SplitHorizontal",
+      "space w v": "pane::SplitVertical",
+      "space w x": "pane::JoinAll",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      ", t t": "editor::SpawnNearestTask",
+      ", t r": "task::Rerun",
+    },
+  },
+  // {
+  //   "context": "Editor",
+  //   "bindings": {
+  //     "j k": ["workspace::SendKeystrokes", "escape"]
+  //   }
+  // },
+  // {
+  //   "context": "Editor && extension==ts",
+  //   "bindings": {
+  //     ", t v": ["task::Spawn", { "task_name": "deno-test" }],
+  //     ", t s": ["task::Spawn", { "task_name": "deno-test" }]
+  //   }
+  // },
+  // {
+  //   "context": "Editor && extension==rb",
+  //   "bindings": {
+  //     ", t v": ["task::Spawn", { "task_name": "rspec-verify" }],
+  //     ", t s": ["task::Spawn", { "task_name": "rspec-verify-single" }]
+  //   }
+  // }
+]
