@@ -62,3 +62,6 @@ config/sensitive.yml
 
 tsconfig.json
 TODO.md
+
+docs/superpowers/
+.opencode/plans/

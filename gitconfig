@@ -74,3 +74,9 @@
 
 [gpg]
   format = ssh
+[hook "hk-pre-commit"]
+	command = test \"${HK:-1}\" = \"0\" || ~/.local/share/mise/installs/hk/latest/hk run pre-commit --from-hook \"$@\"
+	event = pre-commit
+[hook "hk-commit-msg"]
+	command = test \"${HK:-1}\" = \"0\" || ~/.local/share/mise/installs/hk/latest/hk run commit-msg --from-hook \"$@\"
+	event = commit-msg
