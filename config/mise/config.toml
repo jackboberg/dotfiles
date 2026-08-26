@@ -14,10 +14,16 @@ ruby = "latest"
 "gem:ruby-lsp" = "latest"
 "gem:solargraph" = "latest"
 
+"npm:corepack" = "latest"
 "npm:eslint" = "latest"
 "npm:hostile" = "latest"
 "npm:jshint" = "latest"
 "npm:n_" = "latest"
+"npm:typescript-language-server" = "latest"
+
+"cargo:cargo-release" = "latest"
+"cargo:rustlings" = "latest"
+"cargo:stig" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby"]
