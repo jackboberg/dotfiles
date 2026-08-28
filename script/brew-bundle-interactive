@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+
+# script/brew-bundle-interactive: Interactive Homebrew bundle installer
+
+set -euo pipefail
+IFS=$'\n\t'
+
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+source "${SCRIPT_DIR}/lib/messaging.sh"
+
+brew_bundle_interactive () {
+    local brewfile="${1:-Brewfile}"
+
+    TMP=$(mktemp)
+    MISSING=$(mktemp)
+    trap 'rm -f "$TMP" "$MISSING" "${TMP}.lock.json"' EXIT
+
+    if [[ ! -t 1 ]] || [[ -n "${BREW_BUNDLE_NONINTERACTIVE:-}" ]]; then
+        msg_info "==> Installing Homebrew dependencies (non-interactive)"
+        brew bundle --no-upgrade --file="$brewfile"
+        return 0
+    fi
+
+    if HOMEBREW_BUNDLE_NO_UPGRADE=1 brew bundle check --file="$brewfile" >/dev/null 2>&1; then
+        msg_info "==> Homebrew dependencies already satisfied"
+        return 0
+    fi
+
+    collect_missing_entries "$brewfile" "$MISSING"
+
+    if [[ ! -s "$MISSING" ]]; then
+        msg_info "==> No missing entries detected"
+        return 0
+    fi
+
+    show_legend
+    select_entries "$brewfile" "$MISSING" "$TMP"
+
+    if [[ -s "$TMP" ]]; then
+        msg_info "==> Installing selected dependencies"
+        brew bundle --no-upgrade --file="$TMP"
+    else
+        msg_warn "==> No entries selected"
+    fi
+}
+
+collect_missing_entries () {
+    local brewfile="$1"
+    local missing_file="$2"
+
+    msg_info "==> Checking for missing dependencies"
+
+    HOMEBREW_BUNDLE_NO_UPGRADE=1 brew bundle check --verbose --file="$brewfile" 2>&1 | \
+        grep '^→' | \
+        sed -E 's/^→ (Cask|Formula|Tap|App|VSCode|Go|Cargo|uv|Flatpak|WinGet|Krew|npm) (.+) needs.*/\2/' >> "$missing_file" || true
+}
+
+show_legend () {
+    msg_header "==> Interactive install"
+    msg "  Enter or y = yes to this entry"
+    msg "  n          = no to this entry"
+    msg "  Y          = yes to this and all remaining entries"
+    msg "  N          = no to this and all remaining entries"
+    msg "  q          = stop selecting and install accepted entries"
+}
+
+select_entries () {
+    local brewfile="$1"
+    local missing_file="$2"
+    local tmp_file="$3"
+    local line entry_name choice
+    local auto_yes=0
+    local auto_no=0
+
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        if [[ -z "$line" ]] || [[ "$line" =~ ^[[:space:]]*# ]] || \
+           [[ "$line" =~ ^[[:space:]]*(tap|cask_args|args)[[:space:][:punct:]] ]]; then
+            echo "$line" >> "$tmp_file"
+            continue
+        fi
+
+        if [[ "$line" =~ ^[[:space:]]*(brew|cask|mas|vscode|go|cargo|uv|flatpak|winget|krew|npm)[[:space:]]+\"([^\"]+)\" ]]; then
+            entry_name="${BASH_REMATCH[2]}"
+
+            if ! grep -qxF "$entry_name" "$missing_file" 2>/dev/null; then
+                continue
+            fi
+
+            if [[ "$auto_yes" -eq 1 ]]; then
+                echo "$line" >> "$tmp_file"
+                continue
+            fi
+            if [[ "$auto_no" -eq 1 ]]; then
+                continue
+            fi
+
+            while true; do
+                read -r -p "Install: ${line}? [y/n/Y/N/q] (default: y): " choice < /dev/tty
+                choice=${choice:-y}
+                case "$choice" in
+                    y) echo "$line" >> "$tmp_file"; break ;;
+                    n) break ;;
+                    Y) auto_yes=1; echo "$line" >> "$tmp_file"; break ;;
+                    N) auto_no=1; break ;;
+                    q) break 2 ;;
+                    *) msg_warn "Invalid choice." ;;
+                esac
+            done
+        else
+            echo "$line" >> "$tmp_file"
+        fi
+    done < "$brewfile"
+}
+
+if ! (return 0 2>/dev/null); then
+    bootstrap_colors
+    brew_bundle_interactive "$@"
+fi

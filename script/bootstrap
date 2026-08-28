@@ -153,11 +153,8 @@ bootstrap_homebrew () {
             "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
     if [ -f "Brewfile" ] && [ "$(uname -s)" = "Darwin" ]; then
-        msg_info "==> Checking Homebrew dependencies"
-        brew bundle check >/dev/null 2>&1  || {
-            msg_info "==> Installing Homebrew dependencies"
-            brew bundle --no-upgrade
-        }
+        msg_info "==> Installing Homebrew dependencies"
+        script/brew-bundle-interactive
     fi
 }
 
