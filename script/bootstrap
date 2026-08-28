@@ -5,7 +5,8 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+# shellcheck source=./lib/messaging.sh
 source "${SCRIPT_DIR}/lib/messaging.sh"
 
 CONFIG_DIR=${XDG_CONFIG_HOME:-$HOME/.config}

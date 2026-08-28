@@ -5,8 +5,13 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+DOT_DIR=$(dirname "$SCRIPT_DIR")
+# shellcheck source=./bootstrap
+source "${SCRIPT_DIR}/bootstrap"
+
 setup () {
-    cd "$(dirname "$0")/.."
+    cd "$DOT_DIR"
 
     bootstrap
     msg_header "==> script/setup"
@@ -23,18 +28,18 @@ setup () {
 setup_secure_files () {
     msg_info "==> Setting up secure files"
 
-    if [ -d "${dot_dir}/local" ]; then return; fi
+    if [ -d "${DOT_DIR}/local" ]; then return; fi
 
-    ln -s "$(config_get secure_dir)" "${dot_dir}/local"
+    ln -s "$(config_get secure_dir)" "${DOT_DIR}/local"
 }
 
 setup_rc () {
     msg_info "==> Setting up RC files"
 
     # Set this repo as the source directory.
-    echo "DOTFILES_DIRS=\"${dot_dir}\"" >> ./rcrc
+    echo "DOTFILES_DIRS=\"${DOT_DIR}\"" >> ./rcrc
 
-    env RCRC="${dot_dir}/rcrc" rcup
+    env RCRC="${DOT_DIR}/rcrc" rcup
 }
 
 setup_shell () {
@@ -54,7 +59,7 @@ setup_shell () {
     fi
 
     if ! file_contains "${shells}" "${shell_bin}"; then
-        echo "${shell_bin}" >> sudo tee -a "${shells}" > /dev/null
+        echo "${shell_bin}" | sudo tee -a "${shells}" > /dev/null
     fi
 
     sudo chsh -s "${shell_bin}"
@@ -113,9 +118,5 @@ setup_hosts () {
 }
 
 if ! (return 0 2>/dev/null); then
-    script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
-    dot_dir=$(dirname "$script_dir")
-    # shellcheck source=./bootstrap
-    source "${script_dir}/bootstrap"
     setup "$@"
 fi
