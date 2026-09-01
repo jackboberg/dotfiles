@@ -12,7 +12,7 @@ bootstrap_colors () {
 }
 
 msg () {
-    echo >&2 -e "${1-}"
+    printf >&2 '%b\n' "${1-}"
 }
 
 msg_header () {
