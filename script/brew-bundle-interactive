@@ -25,10 +25,7 @@ brew_bundle_interactive () {
     tmp=$(mktemp "${TMPDIR:-/tmp}/brew-bundle-interactive.XXXXXX")
     missing=$(mktemp "${TMPDIR:-/tmp}/brew-bundle-missing.XXXXXX")
 
-    cleanup () {
-        rm -f "${tmp:-}" "${missing:-}" "${tmp:-}.lock.json"
-    }
-    trap cleanup EXIT
+    trap "rm -f '$tmp' '$missing' '$tmp.lock.json'" EXIT
 
     if [[ ! -t 1 ]] || [[ -n "${BREW_BUNDLE_NONINTERACTIVE:-}" ]]; then
         msg_info "==> Installing Homebrew dependencies (non-interactive)"
