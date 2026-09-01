@@ -156,7 +156,7 @@ bootstrap_homebrew () {
     if [ -f "Brewfile" ] && [ "$(uname -s)" = "Darwin" ]; then
         if [ ! -e "$HOME/.Brewfile" ]; then
             msg_info "==> Symlinking Brewfile to ~/.Brewfile"
-            ln -s "${PWD}/Brewfile" "$HOME/.Brewfile"
+            ln -s "${SCRIPT_DIR}/../Brewfile" "$HOME/.Brewfile"
         fi
         msg_info "==> Installing Homebrew dependencies"
         script/brew-bundle-interactive
