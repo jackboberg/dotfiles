@@ -12,8 +12,8 @@ source "${SCRIPT_DIR}/lib/messaging.sh"
 brew_bundle_interactive () {
     local tmp missing
 
-    tmp=$(mktemp)
-    missing=$(mktemp)
+    tmp=$(mktemp "${TMPDIR:-/tmp}/brew-bundle-interactive.XXXXXX")
+    missing=$(mktemp "${TMPDIR:-/tmp}/brew-bundle-missing.XXXXXX")
 
     cleanup () {
         rm -f "$tmp" "$missing" "$tmp.lock.json"

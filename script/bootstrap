@@ -154,6 +154,10 @@ bootstrap_homebrew () {
             "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
     if [ -f "Brewfile" ] && [ "$(uname -s)" = "Darwin" ]; then
+        if [ -L "$HOME/.Brewfile" ] && [ ! -e "$HOME/.Brewfile" ]; then
+            msg_info "==> Removing broken ~/.Brewfile symlink"
+            rm -f "$HOME/.Brewfile"
+        fi
         if [ ! -e "$HOME/.Brewfile" ]; then
             msg_info "==> Symlinking Brewfile to ~/.Brewfile"
             ln -s "${SCRIPT_DIR}/../Brewfile" "$HOME/.Brewfile"
