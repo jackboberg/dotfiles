@@ -10,7 +10,6 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 source "${SCRIPT_DIR}/lib/messaging.sh"
 
 brew_bundle_interactive () {
-    local brewfile="${1:-Brewfile}"
     local tmp missing
 
     tmp=$(mktemp)
@@ -23,16 +22,16 @@ brew_bundle_interactive () {
 
     if [[ ! -t 1 ]] || [[ -n "${BREW_BUNDLE_NONINTERACTIVE:-}" ]]; then
         msg_info "==> Installing Homebrew dependencies (non-interactive)"
-        brew bundle --no-upgrade --file="$brewfile"
+        brew bundle --global --no-upgrade
         return 0
     fi
 
-    if HOMEBREW_BUNDLE_NO_UPGRADE=1 brew bundle check --file="$brewfile" >/dev/null 2>&1; then
+    if HOMEBREW_BUNDLE_NO_UPGRADE=1 brew bundle check --global >/dev/null 2>&1; then
         msg_info "==> Homebrew dependencies already satisfied"
         return 0
     fi
 
-    collect_missing_entries "$brewfile" "$missing"
+    collect_missing_entries "$missing"
 
     if [[ ! -s "$missing" ]]; then
         msg_info "==> No missing entries detected"
@@ -40,7 +39,7 @@ brew_bundle_interactive () {
     fi
 
     show_legend
-    select_entries "$brewfile" "$missing" "$tmp"
+    select_entries "$missing" "$tmp"
 
     if [[ -s "$tmp" ]]; then
         msg_info "==> Installing selected dependencies"
@@ -51,12 +50,11 @@ brew_bundle_interactive () {
 }
 
 collect_missing_entries () {
-    local brewfile="$1"
-    local missing_file="$2"
+    local missing_file="$1"
 
     msg_info "==> Checking for missing dependencies"
 
-    HOMEBREW_BUNDLE_NO_UPGRADE=1 brew bundle check --verbose --file="$brewfile" 2>&1 | \
+    HOMEBREW_BUNDLE_NO_UPGRADE=1 brew bundle check --verbose --global 2>&1 | \
         grep '^→' | \
         sed -E 's/^→ (Cask|Formula|Tap|App|VSCode|Go|Cargo|uv|Flatpak|WinGet|Krew|npm) (.+) needs.*/\2/' >> "$missing_file" || true
 }
@@ -71,9 +69,8 @@ show_legend () {
 }
 
 select_entries () {
-    local brewfile="$1"
-    local missing_file="$2"
-    local tmp_file="$3"
+    local missing_file="$1"
+    local tmp_file="$2"
     local line entry_name choice
     local auto_yes=0
     local auto_no=0
@@ -115,10 +112,10 @@ select_entries () {
         else
             echo "$line" >> "$tmp_file"
         fi
-    done < "$brewfile"
+    done < "$HOME/.Brewfile"
 }
 
 if ! (return 0 2>/dev/null); then
     bootstrap_colors
-    brew_bundle_interactive "$@"
+    brew_bundle_interactive
 fi
