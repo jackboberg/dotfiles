@@ -12,11 +12,21 @@ source "${SCRIPT_DIR}/lib/messaging.sh"
 brew_bundle_interactive () {
     local tmp missing
 
+    if ! command -v brew >/dev/null 2>&1; then
+        msg_error "Homebrew is not installed. Run script/bootstrap first."
+        return 1
+    fi
+
+    if [[ ! -f "$HOME/.Brewfile" ]]; then
+        msg_error "$HOME/.Brewfile does not exist. Run script/bootstrap first."
+        return 1
+    fi
+
     tmp=$(mktemp "${TMPDIR:-/tmp}/brew-bundle-interactive.XXXXXX")
     missing=$(mktemp "${TMPDIR:-/tmp}/brew-bundle-missing.XXXXXX")
 
     cleanup () {
-        rm -f "$tmp" "$missing" "$tmp.lock.json"
+        rm -f "${tmp:-}" "${missing:-}" "${tmp:-}.lock.json"
     }
     trap cleanup EXIT
 
@@ -56,7 +66,7 @@ collect_missing_entries () {
 
     HOMEBREW_BUNDLE_NO_UPGRADE=1 brew bundle check --verbose --global 2>&1 | \
         grep '^→' | \
-        sed -E 's/^→ (Cask|Formula|Tap|App|VSCode|Go|Cargo|uv|Flatpak|WinGet|Krew|npm) (.+) needs.*/\2/' >> "$missing_file" || true
+        sed -nE 's/^→ (Cask|Formula|Tap|App|VSCode|Go|Cargo|uv|Flatpak|WinGet|Krew|npm) (.+) needs.*/\2/p' >> "$missing_file" || true
 }
 
 show_legend () {
@@ -98,7 +108,9 @@ select_entries () {
             fi
 
             while true; do
-                read -r -p "Install: ${line}? [y/n/Y/N/q] (default: y): " choice < /dev/tty
+                if ! read -r -p "Install: ${line}? [y/n/Y/N/q] (default: y): " choice < /dev/tty; then
+                    break 2
+                fi
                 choice=${choice:-y}
                 case "$choice" in
                     y) echo "$line" >> "$tmp_file"; break ;;
