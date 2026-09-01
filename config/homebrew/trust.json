@@ -1,0 +1,12 @@
+{
+  "trusted_taps": [
+    "anomalyco/tap",
+    "d12frosted/emacs-plus",
+    "harperreed/tap",
+    "ksdme/tap",
+    "supabase/tap"
+  ],
+  "trusted_formulae": [
+    "anomalyco/tap/opencode"
+  ]
+}
