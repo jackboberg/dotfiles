@@ -11,10 +11,15 @@ source "${SCRIPT_DIR}/lib/messaging.sh"
 
 brew_bundle_interactive () {
     local brewfile="${1:-Brewfile}"
+    local tmp missing
 
-    TMP=$(mktemp)
-    MISSING=$(mktemp)
-    trap 'rm -f "$TMP" "$MISSING" "${TMP}.lock.json"' EXIT
+    tmp=$(mktemp)
+    missing=$(mktemp)
+
+    cleanup () {
+        rm -f "$tmp" "$missing" "$tmp.lock.json"
+    }
+    trap cleanup EXIT
 
     if [[ ! -t 1 ]] || [[ -n "${BREW_BUNDLE_NONINTERACTIVE:-}" ]]; then
         msg_info "==> Installing Homebrew dependencies (non-interactive)"
@@ -27,19 +32,19 @@ brew_bundle_interactive () {
         return 0
     fi
 
-    collect_missing_entries "$brewfile" "$MISSING"
+    collect_missing_entries "$brewfile" "$missing"
 
-    if [[ ! -s "$MISSING" ]]; then
+    if [[ ! -s "$missing" ]]; then
         msg_info "==> No missing entries detected"
         return 0
     fi
 
     show_legend
-    select_entries "$brewfile" "$MISSING" "$TMP"
+    select_entries "$brewfile" "$missing" "$tmp"
 
-    if [[ -s "$TMP" ]]; then
+    if [[ -s "$tmp" ]]; then
         msg_info "==> Installing selected dependencies"
-        brew bundle --no-upgrade --file="$TMP"
+        brew bundle --no-upgrade --file="$tmp"
     else
         msg_warn "==> No entries selected"
     fi
