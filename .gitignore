@@ -13,3 +13,6 @@ config/television/cable/
 
 # doom generated customization file
 doom.d/custom.el
+
+# homebrew trust lock file
+config/homebrew/trust.json.lock

@@ -5,14 +5,15 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+# shellcheck source=./bootstrap
+source "${SCRIPT_DIR}/bootstrap"
+
 update () {
     bootstrap
     msg_header "==> script/update…"
 }
 
 if ! (return 0 2>/dev/null); then
-    script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
-    # shellcheck source=./bootstrap
-    source "${script_dir}/bootstrap"
     update "$@"
 fi

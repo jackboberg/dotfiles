@@ -25,6 +25,14 @@ I have the opportunity to run a _clean_ install.
 - [x-motemen/ghq: Remote repository management made easy][ghq]
 - [Homebrew: The Missing Package Manager for macOS (or Linux)](https://brew.sh)
 
+## Homebrew
+
+The `Brewfile` is symlinked to `~/.Brewfile` and managed via `brew bundle --global`.
+
+- `script/bootstrap` runs `brew bundle --global` to install dependencies
+- Use `brew bundle dump --global` to regenerate `~/.Brewfile` from installed packages
+- The interactive installer prompts for each missing dependency
+
 ## Amnesty
 
 While setting up a new computer, I decided to wipe and restart my dotfiles after
