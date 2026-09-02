@@ -1,4 +1,6 @@
-export SRC=$(/opt/homebrew/bin/ghq root)
+if [ -x /opt/homebrew/bin/ghq ]; then
+  export SRC=$(/opt/homebrew/bin/ghq root)
+fi
 export DOT=${(%):-%d}
 
 # XDG Base Directory Specification
