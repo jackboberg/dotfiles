@@ -12,13 +12,14 @@ bindkey -v
 zstyle :compinstall filename '/Users/jack/.zshrc'
 # End of lines added by compinstall
 
-autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
-compinit -C
+# FPATH is exported by `brew shellenv zsh`, so entries are inherited by child
+# shells and re-prepended on each startup. Keep the arrays unique.
+typeset -U fpath path
 
 eval "$(sheldon source)"
+
+# Completion init lives in the sheldon plugin list, where the ordering
+# constraints against $fpath and `compdef` are expressed.
 
 # load local config
 [ -f ~/.local/zshrc ] && . ~/.local/zshrc

@@ -34,38 +34,58 @@ github = "zsh-users/zsh-history-substring-search"
 [plugins.history-fzy]
 gist = "shogogg/86f13a0aff12b9a31efb083946a500cb"
 
-[plugins.enhancd]
-github = "b4b4r07/enhancd"
-
-[plugins.docker]
-github = "robbyrussell/oh-my-zsh"
-dir = "plugins/{{ name }}"
-apply = ["fpath"]
-
+# Sourced for its `dc*` aliases only. Deliberately no "fpath": the plugin's
+# vendored _docker-compose is stale, and completion now comes from the docker
+# CLI itself, registered below.
 [plugins.docker-compose]
 github = "robbyrussell/oh-my-zsh"
 dir = "plugins/{{ name }}"
-apply = ["source", "fpath"]
+apply = ["source"]
 
 [plugins.mise]
 inline = 'eval "$(mise activate zsh)"'
 
-# update completions
+# cargo/rustc completions from the rustup toolchain mise installs.
+[plugins.rust]
+inline = 'fpath+=(${RUSTUP_HOME:-$HOME/.local/share/rustup}/toolchains/*/share/zsh/site-functions(N))'
+
+# Completion system. A single compinit, deliberately placed here: after every
+# plugin above that appends to $fpath, and before every plugin below that
+# calls `compdef`, since compinit is what defines it.
 [plugins.compinit]
-inline = "compinit"
+inline = '''
+autoload -Uz compinit
+zdump=${ZDOTDIR:-$HOME}/.zcompdump
+if [[ ! -e $zdump || -n $zdump(#qNmh+24) ]]; then
+  compinit -d $zdump
+else
+  compinit -C -d $zdump
+fi
+unset zdump
+'''
+
+# --- Everything below calls `compdef`, so it must stay after compinit. ---
+
+[plugins.enhancd]
+github = "b4b4r07/enhancd"
+
+# Docker ships a dynamic completer that tracks the installed CLI and its
+# plugins, unlike the stale static ones vendored in oh-my-zsh.
+[plugins.docker-completions]
+inline = '''
+if command -v docker >/dev/null 2>&1; then
+  _docker_lazy() {
+    eval "$(command docker completion zsh)" || return
+    compdef _docker docker docker-compose
+    _docker "$@"
+  }
+  compdef _docker_lazy docker docker-compose
+fi
+'''
 
 # Load local plugins last, so they can overwrite config
 [plugins.dotfiles]
 local = "~/.zsh"
-
-# TODO: make this arch agnostic
-[plugins.brew-completions]
-local = "/opt/homebrew/etc/bash_completion.d"
-apply = ["fpath"]
-
-# [plugins.rust]
-# local = "~/.rustup/toolchains/stable-*/share/zsh/site-functions"
-# apply = ["fpath"]
 
 # [plugins.wd]
 # github = "mfaerevaag/wd"
