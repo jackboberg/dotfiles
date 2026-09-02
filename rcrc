@@ -1,3 +1,3 @@
 EXCLUDES="CODE_OF_CONDUCT.md LICENSE README.md script iTerm2"
-SYMLINK_DIRS="git-template doom.d sheldon bundle bin zsh local config"
+SYMLINK_DIRS="git-template doom.d sheldon bundle bin zsh local config agents claude"
 DOTFILES_DIRS="/Users/jack/src/github.com/jackboberg/dotfiles"
