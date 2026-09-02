@@ -18,7 +18,5 @@ export ENHANCD_COMMAND=c
 
 export EDITOR="zed --wait"
 
-export FSEVENT_SLEEP="$HOME/.bin/fsevent_sleep"
-
 export GOPATH=$SRC
 [ -f "$CARGO_HOME/env" ] && . "$CARGO_HOME/env"
