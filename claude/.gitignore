@@ -1,0 +1,10 @@
+# Ignore everything by default
+*
+
+# Track configuration
+!settings.json
+!policy-limits.json
+
+# Track symlinks to shared content
+!rules
+!skills
