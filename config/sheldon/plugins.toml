@@ -45,7 +45,9 @@ apply = ["source"]
 [plugins.mise]
 inline = 'eval "$(mise activate zsh)"'
 
-# cargo/rustc completions from the rustup toolchain mise installs.
+# cargo/rustc completions from the rustup toolchain mise installs. mise names
+# the toolchain by version (1.98.0-aarch64-apple-darwin), so glob it; the (N)
+# qualifier keeps this quiet before rust is installed.
 [plugins.rust]
 inline = 'fpath+=(${RUSTUP_HOME:-$HOME/.local/share/rustup}/toolchains/*/share/zsh/site-functions(N))'
 

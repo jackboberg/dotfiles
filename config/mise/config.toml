@@ -6,6 +6,7 @@ pkl = "latest"
 slsa-verifier = "latest"
 node = "latest"
 ruby = "latest"
+rust = "latest"
 
 "gem:keycutter" = "latest"
 "gem:pry" = "latest"
@@ -23,6 +24,16 @@ ruby = "latest"
 "cargo:cargo-release" = "latest"
 "cargo:rustlings" = "latest"
 "cargo:stig" = "latest"
+"cargo:https://github.com/doompling/fuzzy_ruby_server" = "branch:master"
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby"]
+
+# mise's rust tool is rustup-backed and records the CARGO_HOME in effect at
+# install time. Pin it here so the location can't drift with the ambient shell
+# env (a shell without the zshenv exports would otherwise re-record ~/.cargo).
+# {{env.HOME}} rather than {{env.XDG_DATA_HOME}}: HOME is always set, XDG_DATA_HOME
+# is not in a GUI-launched or cron environment.
+[env]
+MISE_RUSTUP_HOME = "{{env.HOME}}/.local/share/rustup"
+MISE_CARGO_HOME = "{{env.HOME}}/.local/share/cargo"
