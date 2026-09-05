@@ -16,7 +16,3 @@ doom.d/custom.el
 
 # homebrew trust lock file
 config/homebrew/trust.json.lock
-
-# crit auto-installed files (managed by `crit install`)
-.opencode/
-opencode.jsonc
