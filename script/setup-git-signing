@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+# script/setup-git-signing: Setup SSH signing key and upload to GitHub
+
+set -euo pipefail
+IFS=$'\n\t'
+
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+# shellcheck source=./lib/messaging.sh
+source "${SCRIPT_DIR}/lib/messaging.sh"
+
+KEY_PATH="$HOME/.ssh/id_ed25519_signing"
+ALLOWED_SIGNERS="$HOME/.config/git/allowed_signers"
+
+setup_git_signing () {
+    bootstrap_colors
+    msg_header "==> script/setup-git-signing"
+
+    ensure_gh_authenticated
+    ensure_signing_key
+    write_allowed_signers
+    upload_to_github
+
+    msg_info "==> Done"
+}
+
+ensure_gh_authenticated () {
+    if ! gh auth status &>/dev/null 2>&1; then
+        msg_warn "==> GitHub CLI not authenticated"
+        gh auth login
+    fi
+}
+
+ensure_signing_key () {
+    if [ -f "$KEY_PATH" ]; then return; fi
+
+    local email
+    email=$(git config user.email)
+    msg_info "==> Generating SSH signing key for $email"
+    ssh-keygen -t ed25519 -C "$email" -f "$KEY_PATH" -N ""
+}
+
+write_allowed_signers () {
+    local email pubkey
+    email=$(git config user.email)
+    pubkey=$(cat "$KEY_PATH.pub")
+
+    mkdir -p "$(dirname "$ALLOWED_SIGNERS")"
+    echo "$email $pubkey" > "$ALLOWED_SIGNERS"
+    msg_info "==> Wrote $ALLOWED_SIGNERS"
+}
+
+upload_to_github () {
+    local pubkey_key pubkey_data existing_keys title
+    pubkey_key=$(cat "$KEY_PATH.pub")
+    pubkey_data=$(echo "$pubkey_key" | awk '{print $2}')
+
+    existing_keys=$(gh api /user/ssh_signing_keys --jq '.[].key' 2>/dev/null || echo "")
+    if echo "$existing_keys" | grep -q "$pubkey_data"; then
+        msg_info "==> Signing key already on GitHub"
+        return
+    fi
+
+    title="$(hostname) signing key"
+    msg_info "==> Uploading to GitHub as '$title'"
+    gh ssh-key add "$KEY_PATH.pub" --type signing --title "$title"
+}
+
+if ! (return 0 2>/dev/null); then
+    setup_git_signing "$@"
+fi

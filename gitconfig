@@ -50,6 +50,15 @@
 [credential]
   helper = osxkeychain
 
+[user]
+  name = Jack Boberg
+  email = hello@jackboberg.info
+  username = jackboberg
+  signingkey = ~/.ssh/id_ed25519_signing.pub
+
+[github]
+  user = jackboberg
+
 [commit]
   gpgsign = true
 
@@ -74,6 +83,8 @@
 
 [gpg]
   format = ssh
+[gpg "ssh"]
+  allowedSignersFile = ~/.config/git/allowed_signers
 [hook "hk-pre-commit"]
 	command = test \"${HK:-1}\" = \"0\" || ~/.local/share/mise/installs/hk/latest/hk run pre-commit --from-hook \"$@\"
 	event = pre-commit

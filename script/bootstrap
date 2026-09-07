@@ -42,6 +42,7 @@ bootstrap () {
     bootstrap_shell
     bootstrap_xcode
     bootstrap_homebrew
+    bootstrap_git_signing
 }
 
 bootstrap_config () {
@@ -165,6 +166,17 @@ bootstrap_homebrew () {
         msg_info "==> Installing Homebrew dependencies"
         script/brew-bundle-interactive
     fi
+}
+
+bootstrap_git_signing () {
+    local skip
+    skip=$(config_get skip_bootstrap_git_signing 0)
+
+    if [ "${skip}" == "1" ]; then return; fi
+
+    msg_info "==> Setting up git SSH signing"
+    script/setup-git-signing
+    config_set skip_bootstrap_git_signing 1
 }
 
 if ! (return 0 2>/dev/null); then
