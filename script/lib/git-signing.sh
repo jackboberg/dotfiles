@@ -23,8 +23,6 @@ ensure_gh_authenticated () {
 }
 
 ensure_signing_key () {
-    if [ -f "$KEY_PATH" ]; then return; fi
-
     local email
     email=$(git config user.email)
     if [ -z "$email" ]; then
@@ -33,6 +31,15 @@ ensure_signing_key () {
     fi
 
     mkdir -p "$(dirname "$KEY_PATH")"
+
+    if [ -f "$KEY_PATH" ] && [ ! -f "$KEY_PATH.pub" ]; then
+        msg_info "==> Regenerating public key from private key"
+        ssh-keygen -y -f "$KEY_PATH" > "$KEY_PATH.pub"
+        return
+    fi
+
+    if [ -f "$KEY_PATH" ]; then return; fi
+
     msg_info "==> Generating SSH signing key for $email"
     ssh-keygen -t ed25519 -C "$email" -f "$KEY_PATH" -N ""
 }
