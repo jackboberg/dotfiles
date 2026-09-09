@@ -47,7 +47,7 @@ ensure_signing_key () {
     if [ -f "$KEY_PATH" ]; then return; fi
 
     msg_info "==> Generating SSH signing key for $email"
-    ssh-keygen -t ed25519 -C "$email" -f "$KEY_PATH" -N ""
+    ssh-keygen -t ed25519 -C "$email" -f "$KEY_PATH"
 }
 
 write_allowed_signers () {
@@ -67,11 +67,11 @@ write_allowed_signers () {
 }
 
 upload_to_github () {
-    local pubkey_data existing_keys title
+    local pubkey_data existing_key_data title
     pubkey_data=$(awk '{print $2}' "$KEY_PATH.pub")
 
-    existing_keys=$(gh api /user/ssh_signing_keys --jq '.[].key' 2>/dev/null || echo "")
-    if echo "$existing_keys" | grep -q "$pubkey_data"; then
+    existing_key_data=$(gh api /user/ssh_signing_keys --jq '.[].key | split(" ")[1]' 2>/dev/null || true)
+    if echo "$existing_key_data" | grep -qxF "$pubkey_data"; then
         msg_info "==> Signing key already on GitHub"
         return
     fi
