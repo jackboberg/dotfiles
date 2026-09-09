@@ -53,7 +53,7 @@
 [user]
   name = Jack Boberg
   email = hello@jackboberg.info
-  signingkey = ~/.ssh/id_ed25519_signing.pub
+  signingkey = ~/.ssh/id_ed25519_signing
 
 [github]
   user = jackboberg

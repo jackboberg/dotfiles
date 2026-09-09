@@ -32,6 +32,12 @@ ensure_signing_key () {
 
     mkdir -p "$(dirname "$KEY_PATH")"
 
+    if [ -f "$KEY_PATH.pub" ] && [ ! -f "$KEY_PATH" ]; then
+        msg_error "==> Public key exists but private key is missing: $KEY_PATH"
+        msg_error "==> Remove $KEY_PATH.pub or restore the private key, then rerun."
+        exit 1
+    fi
+
     if [ -f "$KEY_PATH" ] && [ ! -f "$KEY_PATH.pub" ]; then
         msg_info "==> Regenerating public key from private key"
         ssh-keygen -y -f "$KEY_PATH" > "$KEY_PATH.pub"
