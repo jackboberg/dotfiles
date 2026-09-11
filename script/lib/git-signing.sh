@@ -46,7 +46,12 @@ ensure_signing_key () {
     if [ -f "$KEY_PATH" ]; then
         local derived_pubkey existing_pubkey
         derived_pubkey=$(ssh-keygen -y -f "$KEY_PATH" 2>/dev/null | awk '{print $2}')
-        existing_pubkey=$(awk '{print $2}' "$KEY_PATH.pub" 2>/dev/null)
+
+        if [ -f "$KEY_PATH.pub" ]; then
+            existing_pubkey=$(awk '{print $2}' "$KEY_PATH.pub")
+        else
+            existing_pubkey=""
+        fi
 
         if [ -z "$existing_pubkey" ] || [ "$derived_pubkey" != "$existing_pubkey" ]; then
             msg_info "==> Public key missing or mismatched; regenerating"
