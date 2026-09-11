@@ -43,13 +43,18 @@ ensure_signing_key () {
         exit 1
     fi
 
-    if [ -f "$KEY_PATH" ] && [ ! -f "$KEY_PATH.pub" ]; then
-        msg_info "==> Regenerating public key from private key"
-        ssh-keygen -y -f "$KEY_PATH" > "$KEY_PATH.pub"
+    if [ -f "$KEY_PATH" ]; then
+        local derived_pubkey existing_pubkey
+        derived_pubkey=$(ssh-keygen -y -f "$KEY_PATH" 2>/dev/null | awk '{print $2}')
+        existing_pubkey=$(awk '{print $2}' "$KEY_PATH.pub" 2>/dev/null)
+
+        if [ -z "$existing_pubkey" ] || [ "$derived_pubkey" != "$existing_pubkey" ]; then
+            msg_info "==> Public key missing or mismatched; regenerating"
+            ssh-keygen -y -f "$KEY_PATH" > "${KEY_PATH}.pub.tmp"
+            mv "${KEY_PATH}.pub.tmp" "$KEY_PATH.pub"
+        fi
         return
     fi
-
-    if [ -f "$KEY_PATH" ]; then return; fi
 
     msg_info "==> Generating SSH signing key for $email"
     ssh-keygen -t ed25519 -C "$email" -f "$KEY_PATH"
@@ -62,7 +67,7 @@ write_allowed_signers () {
     entry="$email $pubkey"
 
     mkdir -p "$(dirname "$ALLOWED_SIGNERS")"
-    if [ -f "$ALLOWED_SIGNERS" ] && grep -qF "$entry" "$ALLOWED_SIGNERS"; then
+    if [ -f "$ALLOWED_SIGNERS" ] && grep -qxF "$entry" "$ALLOWED_SIGNERS"; then
         msg_info "==> allowed_signers already contains this key"
         return
     fi
@@ -75,7 +80,7 @@ upload_to_github () {
     local pubkey_data existing_key_data title
     pubkey_data=$(awk '{print $2}' "$KEY_PATH.pub")
 
-    existing_key_data=$(gh api /user/ssh_signing_keys --jq '.[].key | split(" ")[1]' 2>/dev/null || true)
+    existing_key_data=$(gh api /user/ssh_signing_keys --paginate --jq '.[].key | split(" ")[1]' 2>/dev/null || true)
     if echo "$existing_key_data" | grep -qxF "$pubkey_data"; then
         msg_info "==> Signing key already on GitHub"
         return
