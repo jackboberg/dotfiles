@@ -15,7 +15,12 @@ setup_git_signing () {
 }
 
 ensure_gh_authenticated () {
-    # gh is installed by Brewfile; bootstrap_homebrew runs first in setup()
+    if ! command -v gh &>/dev/null; then
+        msg_error "==> GitHub CLI (gh) is not installed"
+        msg_error "==> Run bootstrap first or install gh manually"
+        exit 1
+    fi
+
     if ! gh auth status &>/dev/null 2>&1; then
         msg_warn "==> GitHub CLI not authenticated"
         gh auth login
