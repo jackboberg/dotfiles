@@ -33,7 +33,15 @@ setup_secure_files () {
 
     if [ -d "${DOT_DIR}/local" ]; then return; fi
 
-    ln -s "$(config_get secure_dir)" "${DOT_DIR}/local"
+    local secure_dir
+    secure_dir=$(config_get secure_dir "")
+
+    if [ -n "$secure_dir" ] && [ -d "$secure_dir" ]; then
+        ln -s "$secure_dir" "${DOT_DIR}/local"
+    else
+        mkdir -p "${DOT_DIR}/local"
+        msg_info "==> Created local directory for machine-specific files"
+    fi
 }
 
 setup_rc () {

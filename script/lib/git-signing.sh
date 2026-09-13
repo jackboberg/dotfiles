@@ -3,12 +3,14 @@
 # script/lib/git-signing.sh: Git SSH signing setup helpers
 
 KEY_PATH="$HOME/.ssh/id_ed25519_signing"
-ALLOWED_SIGNERS="$HOME/.config/git/allowed_signers"
+ALLOWED_SIGNERS="$HOME/.local/share/git/allowed_signers"
+LOCAL_GITCONFIG="$HOME/.local/gitconfig"
 
 setup_git_signing () {
     msg_header "==> git signing"
     ensure_gh_authenticated
     ensure_signing_key
+    ensure_local_gitconfig
     write_allowed_signers
     upload_to_github
     msg_info "==> Done"
@@ -25,6 +27,17 @@ ensure_gh_authenticated () {
         msg_warn "==> GitHub CLI not authenticated"
         gh auth login
     fi
+
+    if ! gh api /user/ssh_signing_keys --jq '.[0].id' &>/dev/null 2>&1; then
+        msg_warn "==> Refreshing GitHub CLI auth for admin:public_key scope"
+        gh auth refresh -h github.com -s admin:public_key
+    fi
+}
+
+ensure_local_gitconfig () {
+    git config --file "$LOCAL_GITCONFIG" user.signingkey "$KEY_PATH"
+    git config --file "$LOCAL_GITCONFIG" gpg.ssh.allowedSignersFile "$ALLOWED_SIGNERS"
+    msg_info "==> Updated $LOCAL_GITCONFIG with signing key paths"
 }
 
 ensure_signing_key () {
@@ -77,7 +90,10 @@ write_allowed_signers () {
         return
     fi
 
-    echo "$entry" >> "$ALLOWED_SIGNERS"
+    if [ -f "$ALLOWED_SIGNERS" ] && [ -s "$ALLOWED_SIGNERS" ] && [ "$(tail -c 1 "$ALLOWED_SIGNERS" | wc -l)" -eq 0 ]; then
+        echo "" >> "$ALLOWED_SIGNERS"
+    fi
+    printf '%s\n' "$entry" >> "$ALLOWED_SIGNERS"
     msg_info "==> Updated $ALLOWED_SIGNERS"
 }
 
