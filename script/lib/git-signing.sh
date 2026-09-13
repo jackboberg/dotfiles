@@ -42,7 +42,7 @@ ensure_local_gitconfig () {
 
 ensure_signing_key () {
     local email
-    email=$(git config user.email)
+    email=$(git config user.email || true)
     if [ -z "$email" ]; then
         msg_error "==> git user.email is not set"
         exit 1
@@ -80,13 +80,16 @@ ensure_signing_key () {
 
 write_allowed_signers () {
     local email pubkey entry
-    email=$(git config user.email)
+    email=$(git config user.email || true)
     pubkey=$(cat "$KEY_PATH.pub")
     entry="$email $pubkey"
 
     mkdir -p "$(dirname "$ALLOWED_SIGNERS")"
     if [ -f "$ALLOWED_SIGNERS" ] && grep -qxF "$entry" "$ALLOWED_SIGNERS"; then
         msg_info "==> allowed_signers already contains this key"
+        if [ -s "$ALLOWED_SIGNERS" ] && [ "$(tail -c 1 "$ALLOWED_SIGNERS" | wc -l)" -eq 0 ]; then
+            echo "" >> "$ALLOWED_SIGNERS"
+        fi
         return
     fi
 

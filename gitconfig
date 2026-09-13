@@ -73,7 +73,7 @@
   defaultBranch = main
 
 [include]
-  # keep your user name and 3rd-party config in a more private file
+  # machine-specific and third-party config overrides
   path = ~/.local/gitconfig
 
 [ghq]

@@ -5,7 +5,7 @@ sheldon/plugins.lock
 # bundler
 bundle/cache
 
-# symlink to private files
+# symlink/directory for private/machine-specific files
 local
 
 # television generated cable channels
