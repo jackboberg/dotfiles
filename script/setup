@@ -31,7 +31,12 @@ setup () {
 setup_secure_files () {
     msg_info "==> Setting up secure files"
 
-    if [ -d "${DOT_DIR}/local" ]; then return; fi
+    if [ -L "${DOT_DIR}/local" ] && [ ! -e "${DOT_DIR}/local" ]; then
+        msg_warn "==> Removing dangling local symlink"
+        rm "${DOT_DIR}/local"
+    elif [ -d "${DOT_DIR}/local" ]; then
+        return
+    fi
 
     local secure_dir
     secure_dir=$(config_get secure_dir "")
@@ -132,9 +137,16 @@ setup_asdf () {
 }
 
 setup_hosts () {
-    msg_info "==> Setting up hosts"
+    local hosts_file
+    hosts_file="$(config_get secure_dir)/hosts"
 
-    sudo hostile load "$(config_get secure_dir)/hosts"
+    if [ ! -f "$hosts_file" ]; then
+        msg_warn "==> Hosts file not found at $hosts_file; skipping"
+        return
+    fi
+
+    msg_info "==> Setting up hosts"
+    sudo hostile load "$hosts_file"
 }
 
 if ! (return 0 2>/dev/null); then

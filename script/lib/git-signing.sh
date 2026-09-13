@@ -104,7 +104,7 @@ upload_to_github () {
     local pubkey_data existing_key_data title
     pubkey_data=$(awk '{print $2}' "$KEY_PATH.pub")
 
-    existing_key_data=$(gh api /user/ssh_signing_keys --paginate --jq '.[].key | split(" ")[1]' 2>/dev/null || true)
+    existing_key_data=$(gh api /user/ssh_signing_keys --paginate --jq '.[].key | split(" ")[1]')
     if echo "$existing_key_data" | grep -qxF "$pubkey_data"; then
         msg_info "==> Signing key already on GitHub"
         return
