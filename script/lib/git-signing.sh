@@ -28,7 +28,9 @@ ensure_gh_authenticated () {
         gh auth login
     fi
 
-    if ! gh api /user/ssh_signing_keys --jq '.[0].id' &>/dev/null 2>&1; then
+    local scopes
+    scopes=$(gh api /user -i 2>/dev/null | grep -i '^x-oauth-scopes:' | sed 's/.*: //')
+    if ! echo "$scopes" | grep -q 'admin:public_key'; then
         msg_warn "==> Refreshing GitHub CLI auth for admin:public_key scope"
         gh auth refresh -h github.com -s admin:public_key
     fi
@@ -58,7 +60,7 @@ ensure_signing_key () {
 
     if [ -f "$KEY_PATH" ]; then
         local derived_pubkey existing_pubkey
-        derived_pubkey=$(ssh-keygen -y -f "$KEY_PATH" 2>/dev/null | awk '{print $2}')
+        derived_pubkey=$(ssh-keygen -y -f "$KEY_PATH" | awk '{print $2}')
 
         if [ -f "$KEY_PATH.pub" ]; then
             existing_pubkey=$(awk '{print $2}' "$KEY_PATH.pub")
