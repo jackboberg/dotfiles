@@ -70,7 +70,13 @@ setup_git_signing_step () {
 setup_shell () {
     msg_info "==> Setting up shell"
     local shell_bin
-    shell_bin=$(config_get shell_bin)
+    shell_bin=$(config_get shell_bin "")
+
+    if [ -z "$shell_bin" ]; then
+        msg_warn "==> shell_bin not configured; skipping shell setup"
+        return
+    fi
+
     local shells="/etc/shells"
 
     if [ "${SHELL}" = "${shell_bin}" ]; then
@@ -137,8 +143,15 @@ setup_asdf () {
 }
 
 setup_hosts () {
-    local hosts_file
-    hosts_file="$(config_get secure_dir "")/hosts"
+    local secure_dir
+    secure_dir=$(config_get secure_dir "")
+
+    if [ -z "$secure_dir" ]; then
+        msg_warn "==> secure_dir not configured; skipping hosts setup"
+        return
+    fi
+
+    local hosts_file="$secure_dir/hosts"
 
     if [ ! -f "$hosts_file" ]; then
         msg_warn "==> Hosts file not found at $hosts_file; skipping"
