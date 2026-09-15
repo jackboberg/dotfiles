@@ -9,6 +9,8 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 DOT_DIR=$(dirname "$SCRIPT_DIR")
 # shellcheck source=./bootstrap
 source "${SCRIPT_DIR}/bootstrap"
+# shellcheck source=./lib/git-signing.sh
+source "${SCRIPT_DIR}/lib/git-signing.sh"
 
 setup () {
     cd "$DOT_DIR"
@@ -18,6 +20,7 @@ setup () {
 
     setup_secure_files
     setup_rc
+    setup_git_signing_step
     setup_shell
     setup_iterm
     setup_emacs
@@ -28,9 +31,22 @@ setup () {
 setup_secure_files () {
     msg_info "==> Setting up secure files"
 
-    if [ -d "${DOT_DIR}/local" ]; then return; fi
+    if [ -L "${DOT_DIR}/local" ] && [ ! -e "${DOT_DIR}/local" ]; then
+        msg_warn "==> Removing dangling local symlink"
+        rm "${DOT_DIR}/local"
+    elif [ -d "${DOT_DIR}/local" ]; then
+        return
+    fi
 
-    ln -s "$(config_get secure_dir)" "${DOT_DIR}/local"
+    local secure_dir
+    secure_dir=$(config_get secure_dir "")
+
+    if [ -n "$secure_dir" ] && [ -d "$secure_dir" ]; then
+        ln -s "$secure_dir" "${DOT_DIR}/local"
+    else
+        mkdir -p "${DOT_DIR}/local"
+        msg_info "==> Created local directory for machine-specific files"
+    fi
 }
 
 setup_rc () {
@@ -40,6 +56,15 @@ setup_rc () {
     echo "DOTFILES_DIRS=\"${DOT_DIR}\"" >> ./rcrc
 
     env RCRC="${DOT_DIR}/rcrc" rcup
+}
+
+setup_git_signing_step () {
+    local skip
+    skip=$(config_get skip_setup_git_signing 0)
+    if [ "${skip}" == "1" ]; then return; fi
+
+    setup_git_signing
+    config_set skip_setup_git_signing 1
 }
 
 setup_shell () {
@@ -112,9 +137,16 @@ setup_asdf () {
 }
 
 setup_hosts () {
-    msg_info "==> Setting up hosts"
+    local hosts_file
+    hosts_file="$(config_get secure_dir "")/hosts"
 
-    sudo hostile load "$(config_get secure_dir)/hosts"
+    if [ ! -f "$hosts_file" ]; then
+        msg_warn "==> Hosts file not found at $hosts_file; skipping"
+        return
+    fi
+
+    msg_info "==> Setting up hosts"
+    sudo hostile load "$hosts_file"
 }
 
 if ! (return 0 2>/dev/null); then

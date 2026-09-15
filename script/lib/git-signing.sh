@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+
+# script/lib/git-signing.sh: Git SSH signing setup helpers
+
+KEY_PATH="$HOME/.ssh/id_ed25519_signing"
+ALLOWED_SIGNERS="$HOME/.local/share/git/allowed_signers"
+LOCAL_GITCONFIG="$HOME/.local/gitconfig"
+
+setup_git_signing () {
+    msg_header "==> git signing"
+    ensure_gh_authenticated
+    ensure_signing_key
+    ensure_local_gitconfig
+    write_allowed_signers
+    upload_to_github
+    msg_info "==> Done"
+}
+
+ensure_gh_authenticated () {
+    if ! command -v gh &>/dev/null; then
+        msg_error "==> GitHub CLI (gh) is not installed"
+        msg_error "==> Run bootstrap first or install gh manually"
+        exit 1
+    fi
+
+    if ! gh auth status &>/dev/null 2>&1; then
+        msg_warn "==> GitHub CLI not authenticated"
+        gh auth login
+    fi
+
+    local scopes
+    scopes=$(gh api /user -i 2>/dev/null | grep -i '^x-oauth-scopes:' | sed 's/.*: //' || true)
+    if ! echo "$scopes" | grep -q 'admin:public_key'; then
+        msg_warn "==> Refreshing GitHub CLI auth for admin:public_key scope"
+        gh auth refresh -h github.com -s admin:public_key
+    fi
+}
+
+ensure_local_gitconfig () {
+    git config --file "$LOCAL_GITCONFIG" user.signingkey "$KEY_PATH"
+    git config --file "$LOCAL_GITCONFIG" gpg.ssh.allowedSignersFile "$ALLOWED_SIGNERS"
+    msg_info "==> Updated $LOCAL_GITCONFIG with signing key paths"
+}
+
+ensure_signing_key () {
+    local email
+    email=$(git config user.email || true)
+    if [ -z "$email" ]; then
+        msg_error "==> git user.email is not set"
+        exit 1
+    fi
+
+    mkdir -p "$(dirname "$KEY_PATH")"
+
+    if [ -f "$KEY_PATH.pub" ] && [ ! -f "$KEY_PATH" ]; then
+        msg_error "==> Public key exists but private key is missing: $KEY_PATH"
+        msg_error "==> Remove $KEY_PATH.pub or restore the private key, then rerun."
+        exit 1
+    fi
+
+    if [ -f "$KEY_PATH" ]; then
+        local derived_pubkey existing_pubkey
+        derived_pubkey=$(ssh-keygen -y -f "$KEY_PATH" | awk '{print $2}')
+
+        if [ -f "$KEY_PATH.pub" ]; then
+            existing_pubkey=$(awk '{print $2}' "$KEY_PATH.pub")
+        else
+            existing_pubkey=""
+        fi
+
+        if [ -z "$existing_pubkey" ] || [ "$derived_pubkey" != "$existing_pubkey" ]; then
+            msg_info "==> Public key missing or mismatched; regenerating"
+            ssh-keygen -y -f "$KEY_PATH" > "${KEY_PATH}.pub.tmp"
+            mv "${KEY_PATH}.pub.tmp" "$KEY_PATH.pub"
+        fi
+        return
+    fi
+
+    msg_info "==> Generating SSH signing key for $email"
+    ssh-keygen -t ed25519 -C "$email" -f "$KEY_PATH"
+}
+
+write_allowed_signers () {
+    local email pubkey entry
+    email=$(git config user.email || true)
+    pubkey=$(cat "$KEY_PATH.pub")
+    entry="$email $pubkey"
+
+    mkdir -p "$(dirname "$ALLOWED_SIGNERS")"
+    if [ -f "$ALLOWED_SIGNERS" ] && grep -qxF "$entry" "$ALLOWED_SIGNERS"; then
+        msg_info "==> allowed_signers already contains this key"
+        if [ -s "$ALLOWED_SIGNERS" ] && [ "$(tail -c 1 "$ALLOWED_SIGNERS" | wc -l)" -eq 0 ]; then
+            echo "" >> "$ALLOWED_SIGNERS"
+        fi
+        return
+    fi
+
+    if [ -f "$ALLOWED_SIGNERS" ] && [ -s "$ALLOWED_SIGNERS" ] && [ "$(tail -c 1 "$ALLOWED_SIGNERS" | wc -l)" -eq 0 ]; then
+        echo "" >> "$ALLOWED_SIGNERS"
+    fi
+    printf '%s\n' "$entry" >> "$ALLOWED_SIGNERS"
+    msg_info "==> Updated $ALLOWED_SIGNERS"
+}
+
+upload_to_github () {
+    local pubkey_data existing_key_data title
+    pubkey_data=$(awk '{print $2}' "$KEY_PATH.pub")
+
+    existing_key_data=$(gh api /user/ssh_signing_keys --paginate --jq '.[].key | split(" ")[1]')
+    if echo "$existing_key_data" | grep -qxF "$pubkey_data"; then
+        msg_info "==> Signing key already on GitHub"
+        return
+    fi
+
+    title="$(hostname) signing key"
+    msg_info "==> Uploading to GitHub as '$title'"
+    gh ssh-key add "$KEY_PATH.pub" --type signing --title "$title"
+}
