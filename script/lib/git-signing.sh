@@ -29,7 +29,7 @@ ensure_gh_authenticated () {
     fi
 
     local scopes
-    scopes=$(gh api /user -i 2>/dev/null | grep -i '^x-oauth-scopes:' | sed 's/.*: //')
+    scopes=$(gh api /user -i 2>/dev/null | grep -i '^x-oauth-scopes:' | sed 's/.*: //' || true)
     if ! echo "$scopes" | grep -q 'admin:public_key'; then
         msg_warn "==> Refreshing GitHub CLI auth for admin:public_key scope"
         gh auth refresh -h github.com -s admin:public_key
