@@ -70,7 +70,13 @@ setup_git_signing_step () {
 setup_shell () {
     msg_info "==> Setting up shell"
     local shell_bin
-    shell_bin=$(config_get shell_bin)
+    shell_bin=$(config_get shell_bin "")
+
+    if [ -z "$shell_bin" ]; then
+        msg_warn "==> shell_bin not configured; skipping shell setup"
+        return
+    fi
+
     local shells="/etc/shells"
 
     if [ "${SHELL}" = "${shell_bin}" ]; then
