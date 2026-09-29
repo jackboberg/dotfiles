@@ -6,14 +6,6 @@
 [interactive]
   diffFilter = delta --color-only
 
-[color]
-  ui = true
-  pager = true
-  interactive = auto
-  diff = auto
-  status = auto
-  branch = auto
-
 [merge]
   tool = opendiff
 
@@ -44,9 +36,6 @@
 [pull]
   rebase = true
 
-[push]
-  default = simple
-
 [credential]
   helper = osxkeychain
 
@@ -68,9 +57,6 @@
 
 [hub]
   protocol = https
-
-[init]
-  defaultBranch = main
 
 [include]
   # machine-specific and third-party config overrides
