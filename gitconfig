@@ -58,6 +58,9 @@
 [hub]
   protocol = https
 
+[init]
+  defaultBranch = main
+
 [include]
   # machine-specific and third-party config overrides
   path = ~/.local/gitconfig
